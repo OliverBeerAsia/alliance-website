@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Alliance Party — A genuine social democratic alternative for Aotearoa New Zealand. Tax justice, public ownership, free healthcare and education, secure housing.">
+  <title>Alliance Party — A Country That Works For Working People</title>
+
+  <!-- Fonts: Three-tier system -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — Alliance Design System
+       Grounded in: campaign materials, constitutional identity
+       ============================================================ */
+    :root {
+      /* Primary — Alliance Burgundy (from brand assets #821918) */
+      --burgundy-900: #5A110F;
+      --burgundy-800: #6B1513;
+      --burgundy-700: #821918;
+      --burgundy-600: #9A2320;
+      --burgundy-500: #B33230;
+      --burgundy-400: #CC4F4D;
+      --burgundy-100: #F5E0DF;
+      --burgundy-50: #FBF0EF;
+
+      /* Secondary — Alliance Blue (from campaign launch poster) */
+      --blue-900: #1A2456;
+      --blue-800: #222F6E;
+      --blue-700: #2B3A8C;
+      --blue-600: #3548A8;
+      --blue-500: #4A5FBF;
+      --blue-400: #6B7FD4;
+      --blue-100: #E0E4F5;
+      --blue-50: #F0F1FB;
+
+      /* Neutrals */
+      --neutral-950: #0F0F0F;
+      --neutral-900: #1A1A1A;
+      --neutral-800: #2D2D2D;
+      --neutral-700: #404040;
+      --neutral-500: #6B6B6B;
+      --neutral-400: #8C8C8C;
+      --neutral-300: #B3B3B3;
+      --neutral-200: #D4D4D4;
+      --neutral-100: #EBEBEB;
+      --neutral-50: #F7F7F7;
+      --white: #FFFFFF;
+
+      /* Semantic */
+      --success: #1A7A3D;
+      --warning: #B8860B;
+      --error: #C41E1E;
+      --info: #2B6CB0;
+
+      /* Typography — Three-tier system
+         Tier 1: Space Grotesk — statement display (Taproot influence)
+         Tier 2: Plus Jakarta Sans — headings & UI
+         Tier 3: Inter — body & reading */
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-heading: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', sans-serif;
+
+      /* Spacing — 4px base (Blue Marine Foundation discipline) */
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-20: 80px;
+      --space-24: 96px;
+      --space-32: 128px;
+
+      /* Layout */
+      --max-width: 1280px;
+      --header-height: 72px;
+
+      /* Radius */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+
+      /* Shadows (Blue Marine Foundation — refined, not heavy) */
+      --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 -1px 10px 0 rgba(172, 171, 171, 0.08);
+      --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(130, 25, 24, 0.08);
+      --shadow-header: 0 1px 8px rgba(0, 0, 0, 0.06);
+
+      /* Transitions (Blue Marine Foundation micro-transitions) */
+      --transition-fast: 0.2s ease-in-out;
+      --transition-medium: 0.35s ease-in-out;
+      --transition-slow: 0.5s ease-in-out;
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--neutral-800);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ============================================================
+       UTILITY — Content container
+       ============================================================ */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    /* ============================================================
+       SCROLL REVEAL — Sections fade in on scroll
+       ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       HEADER — Sticky 72px, white bg
+       EPP influence: dual nav, constant access
+       AOC influence: CTA always visible
+       ============================================================ */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--header-height);
+      background: var(--white);
+      box-shadow: var(--shadow-header);
+      display: flex;
+      align-items: center;
+      transition: box-shadow var(--transition-fast);
+    }
+
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--burgundy-700);
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+    .header-logo span {
+      color: var(--neutral-400);
+      font-weight: 400;
+      font-size: 14px;
+      margin-left: var(--space-2);
+      letter-spacing: 0;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+    }
+
+    .header-nav a {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--neutral-700);
+      transition: color var(--transition-fast);
+      position: relative;
+    }
+    .header-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--burgundy-700);
+      transition: width var(--transition-fast);
+    }
+    .header-nav a:hover {
+      color: var(--burgundy-700);
+    }
+    .header-nav a:hover::after {
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+      padding: 0 var(--space-8);
+      border-radius: var(--radius-md);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--burgundy-700);
+      color: var(--white);
+      border-color: var(--burgundy-700);
+    }
+    .btn-primary:hover {
+      background: var(--burgundy-800);
+      border-color: var(--burgundy-800);
+      transform: scale(1.02);
+    }
+
+    .btn-primary-on-dark {
+      background: var(--white);
+      color: var(--burgundy-700);
+      border-color: var(--white);
+    }
+    .btn-primary-on-dark:hover {
+      background: var(--burgundy-50);
+      border-color: var(--burgundy-50);
+      transform: scale(1.02);
+    }
+
+    .btn-secondary-on-dark {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+    .btn-secondary-on-dark:hover {
+      border-color: var(--white);
+      background: rgba(255, 255, 255, 0.08);
+      transform: scale(1.02);
+    }
+
+    .btn-ghost {
+      background: none;
+      border: none;
+      color: var(--burgundy-700);
+      font-weight: 700;
+      padding: 0;
+      height: auto;
+      position: relative;
+    }
+    .btn-ghost::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--burgundy-700);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition-fast);
+    }
+    .btn-ghost:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Mobile nav toggle */
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      position: relative;
+    }
+    .mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--neutral-900);
+      position: absolute;
+      left: 10px;
+      transition: all var(--transition-fast);
+    }
+    .mobile-toggle span:nth-child(1) { top: 14px; }
+    .mobile-toggle span:nth-child(2) { top: 21px; }
+    .mobile-toggle span:nth-child(3) { top: 28px; }
+
+    .mobile-toggle.active span:nth-child(1) {
+      top: 21px;
+      transform: rotate(45deg);
+    }
+    .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.active span:nth-child(3) {
+      top: 21px;
+      transform: rotate(-45deg);
+    }
+
+    /* ============================================================
+       OVERLINE — Reusable section marker
+       ============================================================ */
+    .overline {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      line-height: 1.4;
+    }
+
+    /* ============================================================
+       SECTION 1: HERO
+       Full-bleed burgundy — Die Linke colour-as-identity
+       Typography IS the design — Taproot influence
+       Conversion-first — AOC influence
+       ============================================================ */
+    .hero {
+      background: var(--burgundy-700);
+      color: var(--white);
+      padding-top: calc(var(--header-height) + var(--space-32));
+      padding-bottom: var(--space-32);
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Subtle texture — grain overlay for depth */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 20%, rgba(154, 35, 32, 0.4) 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 80%, rgba(90, 17, 15, 0.3) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* Diagonal accent line — geometric energy */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -10%;
+      right: -5%;
+      width: 40%;
+      height: 120%;
+      border-left: 1px solid rgba(255, 255, 255, 0.06);
+      transform: rotate(-12deg);
+      pointer-events: none;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-overline {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: var(--space-6);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+    .hero-overline::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(44px, 7vw, 88px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-8);
+      max-width: 14ch;
+    }
+
+    /* Taproot influence: dramatic scale contrast */
+    .hero-headline em {
+      font-style: normal;
+      display: block;
+      font-size: 1.15em;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: 20px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 540px;
+      margin-bottom: var(--space-10);
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    /* Staggered entry animation for hero content */
+    .hero-overline,
+    .hero-headline,
+    .hero-sub,
+    .hero-ctas {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: hero-enter 0.8s ease-out forwards;
+    }
+    .hero-overline { animation-delay: 0.1s; }
+    .hero-headline { animation-delay: 0.25s; }
+    .hero-sub { animation-delay: 0.45s; }
+    .hero-ctas { animation-delay: 0.6s; }
+
+    @keyframes hero-enter {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ============================================================
+       SECTION 2: POLICY PILLARS
+       EPP influence: card-based, scannable, modular
+       Taproot influence: bold anchor statement
+       ============================================================ */
+    .pillars {
+      padding: var(--space-24) 0;
+      background: var(--white);
+    }
+
+    .pillars-overline {
+      color: var(--burgundy-600);
+      margin-bottom: var(--space-6);
+    }
+
+    /* Taproot: type as design element — this IS the section */
+    .pillars-statement {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(28px, 4vw, 52px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--burgundy-700);
+      max-width: 900px;
+      margin-bottom: var(--space-16);
+    }
+    .pillars-statement span {
+      color: var(--neutral-300);
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+    }
+
+    .pillar-card {
+      background: var(--white);
+      border: 1px solid var(--neutral-100);
+      border-radius: var(--radius-md);
+      padding: var(--space-8);
+      transition: all var(--transition-medium);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Blue Marine Foundation: refined card hover */
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 0;
+      background: var(--burgundy-700);
+      transition: height var(--transition-medium);
+    }
+    .pillar-card:hover {
+      box-shadow: var(--shadow-card-hover);
+      transform: translateY(-4px);
+      border-color: var(--burgundy-100);
+    }
+    .pillar-card:hover::before {
+      height: 100%;
+    }
+
+    .pillar-icon {
+      font-size: 32px;
+      margin-bottom: var(--space-5);
+      display: block;
+      width: 56px;
+      height: 56px;
+      background: var(--burgundy-50);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pillar-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--neutral-900);
+      margin-bottom: var(--space-3);
+      line-height: 1.3;
+    }
+
+    .pillar-desc {
+      font-size: 15px;
+      color: var(--neutral-500);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .pillar-link {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--burgundy-700);
+      margin-top: var(--space-5);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      transition: gap var(--transition-fast);
+    }
+    .pillar-link:hover {
+      gap: var(--space-3);
+    }
+
+    /* ============================================================
+       SECTION 3: QUOTE BANNER
+       Full-bleed blue — Die Linke colour blocking
+       Pure typography — Taproot influence
+       ============================================================ */
+    .quote-banner {
+      background: var(--blue-700);
+      color: var(--white);
+      padding: var(--space-32) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle geometric accent */
+    .quote-banner::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: -10%;
+      width: 50%;
+      height: 140%;
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      transform: rotate(8deg);
+      pointer-events: none;
+    }
+
+    .quote-mark {
+      font-family: var(--font-display);
+      font-size: 120px;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.1);
+      margin-bottom: -40px;
+      display: block;
+    }
+
+    .quote-text {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(24px, 3.5vw, 44px);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      max-width: 900px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quote-attribution {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: var(--space-8);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+    .quote-attribution::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* ============================================================
+       SECTION 4: CONFERENCE ANNOUNCEMENT
+       Split layout — from campaign materials (publisher ad pattern)
+       EPP: progressive disclosure, clean hierarchy
+       ============================================================ */
+    .conference {
+      padding: var(--space-24) 0;
+      background: var(--white);
+    }
+
+    .conference-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      align-items: center;
+    }
+
+    .conference-overline {
+      color: var(--burgundy-600);
+      margin-bottom: var(--space-4);
+    }
+
+    .conference-heading {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: clamp(28px, 3vw, 40px);
+      line-height: 1.2;
+      color: var(--neutral-900);
+      margin-bottom: var(--space-6);
+      letter-spacing: -0.01em;
+    }
+
+    .conference-body {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--neutral-700);
+      margin-bottom: var(--space-4);
+    }
+
+    .conference-leaders {
+      display: flex;
+      gap: var(--space-8);
+      margin-top: var(--space-8);
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--neutral-100);
+    }
+
+    .leader {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .leader-role {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--burgundy-600);
+      margin-bottom: var(--space-1);
+    }
+
+    .leader-name {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--neutral-900);
+    }
+
+    /* Image placeholder — split layout right side */
+    .conference-image {
+      background: var(--burgundy-50);
+      border-radius: var(--radius-lg);
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .conference-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, var(--burgundy-100) 0%, transparent 50%),
+        linear-gradient(225deg, var(--blue-50) 0%, transparent 50%);
+      opacity: 0.7;
+    }
+
+    .conference-image-label {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--burgundy-400);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ============================================================
+       SECTION 5: STATISTICS
+       EPP influence: quantifying scale with bold numbers
+       Blue Marine Foundation: statistics grid pattern
+       ============================================================ */
+    .stats {
+      background: var(--burgundy-700);
+      color: var(--white);
+      padding: var(--space-20) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(107, 21, 19, 0.5) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-8);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stat-item {
+      padding: var(--space-6);
+    }
+
+    /* Between stats — subtle vertical dividers */
+    .stat-item:not(:last-child) {
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-2);
+    }
+
+    .stat-label {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ============================================================
+       SECTION 6: MANIFESTO STATEMENTS
+       Taproot Earth influence — typography IS the design
+       Campaign materials: uppercase declarations + horizontal rules
+       Numbered sections for narrative structure
+       ============================================================ */
+    .manifesto {
+      padding: var(--space-32) 0;
+      background: var(--white);
+    }
+
+    .manifesto-inner {
+      max-width: 900px;
+    }
+
+    .manifesto-rule {
+      width: 100%;
+      height: 2px;
+      background: var(--burgundy-700);
+      border: none;
+    }
+
+    .manifesto-statement {
+      padding: var(--space-10) 0;
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-6);
+    }
+
+    /* Taproot: numbered pillar sections for scannable narrative */
+    .manifesto-number {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--burgundy-400);
+      flex-shrink: 0;
+      width: 28px;
+    }
+
+    .manifesto-text {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--burgundy-700);
+    }
+
+    .manifesto-cta {
+      margin-top: var(--space-12);
+      display: flex;
+      align-items: center;
+    }
+
+    /* ============================================================
+       SECTION 7: JOIN CTA
+       Full-bleed burgundy — Die Linke
+       Conversion-first — AOC splash page influence
+       Movement language — Tone of Voice Guide
+       ============================================================ */
+    .join {
+      background: var(--burgundy-700);
+      color: var(--white);
+      padding: var(--space-32) 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .join::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(154, 35, 32, 0.5) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .join .container {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+    }
+
+    .join-headline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-6);
+    }
+
+    .join-sub {
+      font-size: 18px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: var(--space-10);
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* AOC-inspired email capture: minimal fields, maximum conversion */
+    .join-form {
+      display: flex;
+      gap: var(--space-3);
+      max-width: 480px;
+      margin: 0 auto var(--space-6);
+    }
+
+    .join-input {
+      flex: 1;
+      height: 52px;
+      padding: 0 var(--space-5);
+      border-radius: var(--radius-md);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 16px;
+      outline: none;
+      transition: all var(--transition-fast);
+    }
+    .join-input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .join-input:focus {
+      border-color: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .join-form .btn-primary-on-dark {
+      flex-shrink: 0;
+      height: 52px;
+    }
+
+    .join-trust {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    /* ============================================================
+       SECTION 8: FOOTER
+       Neutral-900 — grounded, professional
+       NZ electoral compliance: authorisation line
+       ============================================================ */
+    .footer {
+      background: var(--neutral-900);
+      color: var(--white);
+      padding: var(--space-16) 0 var(--space-8);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: var(--space-10);
+      margin-bottom: var(--space-12);
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: var(--space-4);
+    }
+
+    .footer-tagline {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.6;
+      max-width: 280px;
+    }
+
+    .footer-heading {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: var(--space-5);
+    }
+
+    .footer-links li {
+      margin-bottom: var(--space-3);
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.65);
+      transition: color var(--transition-fast);
+    }
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: var(--space-6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+
+    .footer-legal {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.35);
+      line-height: 1.6;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: var(--space-4);
+    }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+      transition: all var(--transition-fast);
+    }
+    .footer-social a:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* ============================================================
+       MOBILE RESPONSIVE
+       4-column grid, reduced type scale, stacked layouts
+       ============================================================ */
+
+    /* Mobile drawer overlay */
+    .mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+    .mobile-overlay.active {
+      opacity: 1;
+    }
+
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: min(360px, 85vw);
+      height: 100%;
+      background: var(--white);
+      z-index: 999;
+      padding: var(--space-24) var(--space-6) var(--space-6);
+      transition: right var(--transition-medium);
+      overflow-y: auto;
+    }
+    .mobile-drawer.active {
+      right: 0;
+    }
+
+    .mobile-drawer a {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--neutral-800);
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--neutral-100);
+      transition: color var(--transition-fast);
+    }
+    .mobile-drawer a:hover {
+      color: var(--burgundy-700);
+    }
+
+    .mobile-drawer .btn {
+      width: 100%;
+      margin-top: var(--space-6);
+    }
+
+    @media (max-width: 1023px) {
+      .header-nav { display: none; }
+      .mobile-toggle { display: block; }
+      .mobile-drawer { display: block; }
+      .mobile-overlay { display: block; }
+
+      .pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .conference-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+      }
+
+      .conference-image {
+        order: -1;
+        aspect-ratio: 16 / 9;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-8);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .hero {
+        padding-top: calc(var(--header-height) + var(--space-20));
+        padding-bottom: var(--space-20);
+        min-height: auto;
+      }
+
+      .pillars {
+        padding: var(--space-16) 0;
+      }
+
+      .pillars-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+      }
+
+      .quote-banner {
+        padding: var(--space-20) 0;
+      }
+
+      .quote-mark {
+        font-size: 72px;
+        margin-bottom: -24px;
+      }
+
+      .conference {
+        padding: var(--space-16) 0;
+      }
+
+      .conference-leaders {
+        flex-direction: column;
+        gap: var(--space-4);
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .stat-item:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .stat-item {
+        padding: var(--space-6) 0;
+      }
+
+      .manifesto {
+        padding: var(--space-20) 0;
+      }
+
+      .manifesto-statement {
+        gap: var(--space-3);
+        padding: var(--space-6) 0;
+      }
+
+      .join {
+        padding: var(--space-20) 0;
+      }
+
+      .join-form {
+        flex-direction: column;
+      }
+
+      .join-form .btn-primary-on-dark {
+        width: 100%;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        width: 100%;
+      }
+      .hero-ctas .btn {
+        width: 100%;
+      }
+    }
+
+    /* ============================================================
+       FOCUS STATES — Accessibility (WCAG 2.1 AA)
+       Blue-400 focus ring, visible on keyboard only
+       ============================================================ */
+    :focus-visible {
+      outline: 3px solid var(--blue-400);
+      outline-offset: 2px;
+    }
+
+    a:focus:not(:focus-visible),
+    button:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    /* ============================================================
+       SELECTION
+       ============================================================ */
+    ::selection {
+      background: var(--burgundy-700);
+      color: var(--white);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       HEADER — Sticky, always-accessible navigation
+       EPP: constant access pattern
+       AOC: CTA always visible
+       ============================================================ -->
+  <header class="header" role="banner">
+    <div class="container">
+      <a href="/" class="header-logo" aria-label="Alliance Party Home">
+        ALLIANCE<span>Aotearoa NZ</span>
+      </a>
+
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="#policies">What We Stand For</a>
+        <a href="#news">News</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#join" class="btn btn-primary">Join the Alliance</a>
+      </nav>
+
+      <button class="mobile-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-overlay" aria-hidden="true"></div>
+  <nav class="mobile-drawer" aria-label="Mobile navigation" aria-hidden="true">
+    <a href="#policies">What We Stand For</a>
+    <a href="#news">News</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="#join">Get Involved</a>
+    <a href="#join" class="btn btn-primary">Join the Alliance</a>
+  </nav>
+
+
+  <main>
+
+    <!-- ============================================================
+         SECTION 1: HERO
+         Full-bleed burgundy — Die Linke colour-as-identity
+         Typography IS the hero — Taproot Earth
+         Conversion-first — AOC
+         ============================================================ -->
+    <section class="hero" aria-labelledby="hero-headline">
+      <div class="container">
+        <p class="overline hero-overline">7 November 2026 — General Election</p>
+        <h1 id="hero-headline" class="hero-headline">
+          The Alliance<br><em>is back.</em>
+        </h1>
+        <p class="hero-sub">
+          A genuine social democratic alternative to the failed policies of the status&nbsp;quo.
+        </p>
+        <div class="hero-ctas">
+          <a href="#join" class="btn btn-primary-on-dark">Join the Movement</a>
+          <a href="#policies" class="btn btn-secondary-on-dark">Our Policies</a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECTION 2: POLICY PILLARS
+         EPP: card-based, scannable
+         Taproot: bold anchor statement dominates section
+         Campaign materials: policy headline energy
+         ============================================================ -->
+    <section class="pillars reveal" id="policies" aria-labelledby="pillars-heading">
+      <div class="container">
+        <p class="overline pillars-overline">What We Stand For</p>
+        <h2 id="pillars-heading" class="pillars-statement">
+          Tax justice<span>.</span> Public ownership<span>.</span><br>
+          Free healthcare and education<span>.</span><br>
+          Secure housing<span>.</span>
+        </h2>
+
+        <div class="pillars-grid">
+          <a href="#" class="pillar-card">
+            <div class="pillar-icon" aria-hidden="true">⚖</div>
+            <h3 class="pillar-title">Tax Justice</h3>
+            <p class="pillar-desc">A fair tax system that asks more from those who have the most — and less from wage&nbsp;earners.</p>
+            <span class="pillar-link">Read more →</span>
+          </a>
+
+          <a href="#" class="pillar-card">
+            <div class="pillar-icon" aria-hidden="true">🏛</div>
+            <h3 class="pillar-title">Public Ownership</h3>
+            <p class="pillar-desc">Essential services run for people, not profit. Water, power, rail — back in public&nbsp;hands.</p>
+            <span class="pillar-link">Read more →</span>
+          </a>
+
+          <a href="#" class="pillar-card">
+            <div class="pillar-icon" aria-hidden="true">🏥</div>
+            <h3 class="pillar-title">Free Healthcare &amp; Education</h3>
+            <p class="pillar-desc">Because these are rights, not privileges. Fully funded, universally&nbsp;accessible.</p>
+            <span class="pillar-link">Read more →</span>
+          </a>
+
+          <a href="#" class="pillar-card">
+            <div class="pillar-icon" aria-hidden="true">🏠</div>
+            <h3 class="pillar-title">Secure Housing</h3>
+            <p class="pillar-desc">Affordable homes for all New Zealanders. Not speculative assets for the&nbsp;few.</p>
+            <span class="pillar-link">Read more →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECTION 3: QUOTE BANNER
+         Full-bleed blue — Die Linke colour rhythm
+         Pure typography — Taproot (language IS the design)
+         ============================================================ -->
+    <section class="quote-banner reveal" aria-label="Quote from party leader">
+      <div class="container">
+        <span class="quote-mark" aria-hidden="true">"</span>
+        <blockquote class="quote-text">
+          The Alliance is back to offer a genuine social democratic alternative to the failed policies of the status&nbsp;quo.
+        </blockquote>
+        <p class="quote-attribution">Victor Billot, Party Leader</p>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECTION 4: CONFERENCE ANNOUNCEMENT
+         Split layout — from campaign print materials
+         EPP: progressive disclosure, clean hierarchy
+         ============================================================ -->
+    <section class="conference reveal" id="news" aria-labelledby="conference-heading">
+      <div class="container">
+        <div class="conference-grid">
+          <div class="conference-content">
+            <p class="overline conference-overline">Ōtautahi Christchurch — February 2026</p>
+            <h2 id="conference-heading" class="conference-heading">
+              Conference confirms<br>election campaign
+            </h2>
+            <p class="conference-body">
+              Members from across Aotearoa gathered at the Trade Union Centre to ratify the party's constitution, elect national officers, and confirm the policy platform for the upcoming general&nbsp;election.
+            </p>
+            <p class="conference-body">
+              The Conference confirmed the Alliance's strategy to stand candidates in key electorates across the country for 7 November&nbsp;2026.
+            </p>
+
+            <div class="conference-leaders">
+              <div class="leader">
+                <span class="leader-role">Party Leader</span>
+                <span class="leader-name">Victor Billot</span>
+              </div>
+              <div class="leader">
+                <span class="leader-role">Party President</span>
+                <span class="leader-name">Tom Roud</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="conference-image" aria-label="Conference photo placeholder">
+            <span class="conference-image-label">Conference Photo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECTION 5: STATISTICS
+         Full-bleed burgundy — Die Linke rhythm
+         EPP: quantifying scale, bold numbers
+         Blue Marine Foundation: statistics grid pattern
+         ============================================================ -->
+    <section class="stats reveal" aria-label="Key statistics">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">7 Nov</div>
+            <div class="stat-label">Election Day 2026</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Members at Conference</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">All</div>
+            <div class="stat-label">Across Aotearoa</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECTION 6: MANIFESTO STATEMENTS
+         Taproot Earth — typography IS the design
+         Campaign materials — uppercase declarations + horizontal rules
+         Numbered for narrative structure (Taproot pillars)
+         ============================================================ -->
+    <section class="manifesto reveal" aria-label="Policy declarations">
+      <div class="container">
+        <div class="manifesto-inner">
+          <hr class="manifesto-rule">
+
+          <div class="manifesto-statement">
+            <span class="manifesto-number">01</span>
+            <p class="manifesto-text">Keep and expand our public&nbsp;assets</p>
+          </div>
+
+          <hr class="manifesto-rule">
+
+          <div class="manifesto-statement">
+            <span class="manifesto-number">02</span>
+            <p class="manifesto-text">Secure work for&nbsp;all</p>
+          </div>
+
+          <hr class="manifesto-rule">
+
+          <div class="manifesto-statement">
+            <span class="manifesto-number">03</span>
+            <p class="manifesto-text">Free healthcare. Free&nbsp;education.</p>
+          </div>
+
+          <hr class="manifesto-rule">
+
+          <div class="manifesto-statement">
+            <span class="manifesto-number">04</span>
+            <p class="manifesto-text">A country that works for working&nbsp;people</p>
+          </div>
+
+          <hr class="manifesto-rule">
+
+          <div class="manifesto-cta">
+            <a href="#" class="btn-ghost">Read Our Full Platform →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         SECTION 7: JOIN CTA
+         Full-bleed burgundy — Die Linke
+         AOC: conversion-first, splash page energy
+         Tone of Voice: movement-building, collective language
+         ============================================================ -->
+    <section class="join reveal" id="join" aria-labelledby="join-heading">
+      <div class="container">
+        <h2 id="join-heading" class="join-headline">
+          Together, we can build<br>a fairer Aotearoa.
+        </h2>
+        <p class="join-sub">
+          No corporate donors. No hidden agendas. Just people who believe we can do&nbsp;better.
+        </p>
+        <form class="join-form" action="#" method="post" aria-label="Email signup">
+          <input type="email" class="join-input" placeholder="your@email.com" aria-label="Email address" required>
+          <button type="submit" class="btn btn-primary-on-dark">Join the Alliance</button>
+        </form>
+        <p class="join-trust">We respect your privacy. Unsubscribe at any time.</p>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER
+       Neutral-900 — grounded
+       NZ electoral compliance: authorisation line
+       ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand">Alliance</p>
+          <p class="footer-tagline">A country that works for working people. Democratic socialist politics for Aotearoa New&nbsp;Zealand.</p>
+        </div>
+
+        <div>
+          <p class="footer-heading">Party</p>
+          <ul class="footer-links">
+            <li><a href="#">What We Stand For</a></li>
+            <li><a href="#">Our History</a></li>
+            <li><a href="#">Constitution</a></li>
+            <li><a href="#">Leadership</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-heading">Get Involved</p>
+          <ul class="footer-links">
+            <li><a href="#">Join</a></li>
+            <li><a href="#">Volunteer</a></li>
+            <li><a href="#">Donate</a></li>
+            <li><a href="#">Events</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-heading">Connect</p>
+          <ul class="footer-links">
+            <li><a href="#">News</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Media Enquiries</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <p>© 2026 Alliance Party of New Zealand.</p>
+          <p>Authorised by V. Billot, 123 Example Street, Christchurch.</p>
+        </div>
+        <div class="footer-social" aria-label="Social media links">
+          <a href="#" aria-label="Facebook">Fb</a>
+          <a href="#" aria-label="Instagram">Ig</a>
+          <a href="#" aria-label="Twitter / X">X</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       JAVASCRIPT — Minimal: mobile nav + scroll reveal
+       Performance: no libraries, vanilla JS only
+       ============================================================ -->
+  <script>
+    // Mobile navigation
+    const toggle = document.querySelector('.mobile-toggle');
+    const drawer = document.querySelector('.mobile-drawer');
+    const overlay = document.querySelector('.mobile-overlay');
+
+    function openDrawer() {
+      toggle.classList.add('active');
+      drawer.classList.add('active');
+      overlay.classList.add('active');
+      toggle.setAttribute('aria-expanded', 'true');
+      drawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      toggle.classList.remove('active');
+      drawer.classList.remove('active');
+      overlay.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.classList.contains('active');
+      isOpen ? closeDrawer() : openDrawer();
+    });
+
+    overlay.addEventListener('click', closeDrawer);
+
+    // Close drawer when clicking nav links
+    drawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeDrawer);
+    });
+
+    // Scroll reveal — IntersectionObserver (performant)
+    const reveals = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -60px 0px'
+    });
+
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = 80; // header height + buffer
+          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
