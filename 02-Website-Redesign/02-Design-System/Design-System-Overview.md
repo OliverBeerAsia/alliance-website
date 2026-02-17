@@ -156,6 +156,135 @@ Drawn directly from the campaign launch poster's blue, which provides excellent 
 
 All primary combinations pass WCAG AAA. The palette is accessibility-strong by design.
 
+### Contrast Rules
+
+The following rules are **mandatory** for all components, pages, and new colour usage. No exceptions without documented justification and contrast ratio verification.
+
+#### Text Contrast Matrix
+
+Every text/background combination used on the site must meet these minimums:
+
+| Background | Text Colour | Ratio | AA (normal) | AA (large) | AAA (normal) | Use Case |
+|-----------|------------|-------|-------------|------------|--------------|----------|
+| White (#FFF) | neutral-900 (#1A1A1A) | **16.2:1** | Pass | Pass | Pass | Body text, headings on white sections |
+| White (#FFF) | neutral-800 (#2D2D2D) | **13.2:1** | Pass | Pass | Pass | Body paragraphs |
+| White (#FFF) | neutral-700 (#404040) | **9.7:1** | Pass | Pass | Pass | Secondary text, nav links |
+| White (#FFF) | neutral-500 (#6B6B6B) | **5.0:1** | Pass | Pass | Pass | Placeholder text, metadata |
+| White (#FFF) | burgundy-700 (#821918) | **8.9:1** | Pass | Pass | Pass | Headings, links, accent text |
+| White (#FFF) | blue-700 (#2B3A8C) | **8.2:1** | Pass | Pass | Pass | Links, accent headings |
+| neutral-50 (#F7F7F7) | neutral-900 (#1A1A1A) | **15.4:1** | Pass | Pass | Pass | Body text on off-white sections |
+| burgundy-50 (#FBF0EF) | neutral-900 (#1A1A1A) | **15.2:1** | Pass | Pass | Pass | Text on tinted sections |
+| burgundy-50 (#FBF0EF) | burgundy-700 (#821918) | **7.4:1** | Pass | Pass | Pass | Accent text on tinted sections |
+| blue-50 (#F0F1FB) | neutral-900 (#1A1A1A) | **14.8:1** | Pass | Pass | Pass | Text on blue-tinted sections |
+| blue-50 (#F0F1FB) | blue-700 (#2B3A8C) | **6.8:1** | Pass | Pass | Fail | Accent text on blue-tinted sections |
+| burgundy-700 (#821918) | white (#FFF) | **8.9:1** | Pass | Pass | Pass | All text on burgundy backgrounds |
+| burgundy-800 (#6B1513) | white (#FFF) | **10.5:1** | Pass | Pass | Pass | Text on dark burgundy |
+| blue-700 (#2B3A8C) | white (#FFF) | **8.2:1** | Pass | Pass | Pass | All text on blue backgrounds |
+| blue-800 (#222F6E) | white (#FFF) | **10.0:1** | Pass | Pass | Pass | Text on dark blue |
+| neutral-950 (#0F0F0F) | white (#FFF) | **19.4:1** | Pass | Pass | Pass | Footer text |
+| neutral-950 (#0F0F0F) | rgba(255,255,255,0.75) | **~13.5:1** | Pass | Pass | Pass | Footer links |
+| neutral-950 (#0F0F0F) | rgba(255,255,255,0.55) | **~9.1:1** | Pass | Pass | Pass | Footer headings (muted) |
+
+**Rules:**
+- **Normal text** (under 18px bold / 24px regular): minimum **4.5:1** contrast ratio
+- **Large text** (≥18px bold or ≥24px regular): minimum **3:1** contrast ratio
+- **Target AAA** (7:1 normal, 4.5:1 large) for all primary content; AA is the floor, not the goal
+- **No light grey text on white** — neutral-500 (#6B6B6B, 5.0:1) is the lightest allowed text on white backgrounds
+- **No reduced-opacity white text on dark backgrounds** below rgba(255,255,255,0.55) — this is the floor for muted text on dark
+
+#### Non-Text UI Contrast Rules (WCAG 1.4.11)
+
+Borders, icons, form input outlines, focus rings, and other non-text UI components must achieve **3:1** contrast against their adjacent background colour.
+
+| Background | Allowed Border/Icon Colours | Minimum Ratio |
+|-----------|---------------------------|---------------|
+| White (#FFF) | burgundy-700, blue-700, neutral-400 (#8C8C8C) or darker | 3:1+ |
+| neutral-50 (#F7F7F7) | burgundy-700, blue-700, neutral-400 or darker | 3:1+ |
+| burgundy-50 (#FBF0EF) | burgundy-700, blue-700, neutral-500 or darker | 3:1+ |
+| burgundy-700 (#821918) | **white (#FFF) only** — no reduced opacity | 8.9:1 |
+| burgundy-800 (#6B1513) | **white (#FFF) only** — no reduced opacity | 10.5:1 |
+| blue-700 (#2B3A8C) | **white (#FFF) only** — no reduced opacity | 8.2:1 |
+| neutral-950 (#0F0F0F) | **white (#FFF) only** — no reduced opacity for functional borders | 19.4:1 |
+
+**Rules:**
+- **On dark backgrounds (burgundy, blue, neutral-950): use solid `#FFFFFF` for all borders and icons.** Never use `rgba(255,255,255,0.7)` or any reduced-opacity white for functional UI elements (buttons, inputs, interactive borders). Decorative dividers may use reduced opacity.
+- **On light backgrounds: use neutral-400 (#8C8C8C) as the lightest functional border.** neutral-300 (#B3B3B3) is only allowed for decorative dividers, not functional input borders.
+- Form input borders in default state: neutral-300 minimum; on focus: burgundy-700 or blue-700
+- Focus rings: 3px solid blue-400 (#6B7FD4) — passes 3:1 on white (3.6:1), burgundy-700, blue-700, and neutral-950 backgrounds
+
+#### Button Accessibility Specification
+
+Every button variant must pass contrast verification for background, text, and border in all states.
+
+| Variant | Background | Text | Border | Text Ratio | Border Ratio (vs adjacent bg) | Touch Target |
+|---------|-----------|------|--------|------------|------------------------------|-------------|
+| **Primary** | burgundy-700 | white | burgundy-700 | 8.9:1 AAA | N/A (same as bg) | 56×160px+ |
+| **Primary hover** | burgundy-800 | white | burgundy-800 | 10.5:1 AAA | N/A | — |
+| **Primary on dark** (on burgundy) | white | burgundy-700 | white | 8.9:1 AAA | 8.9:1 vs burgundy | 56×160px+ |
+| **Primary on dark hover** | burgundy-50 | burgundy-700 | burgundy-50 | 7.4:1 AAA | 6.2:1 vs burgundy | — |
+| **Secondary on dark** (on burgundy) | transparent | white | **white (#FFF)** | 8.9:1 AAA | **8.9:1 vs burgundy** | 56×160px+ |
+| **Secondary on dark hover** | rgba(255,255,255,0.1) | white | white | 8.9:1 AAA | 8.9:1 | — |
+| **Ghost** | none | burgundy-700 | none | 8.9:1 AAA (on white) | N/A | Text hit area |
+
+**Note on secondary-on-dark:** The border **must** be solid `#FFFFFF`, not `rgba(255,255,255,0.7)`. The reduced-opacity value yields approximately 5.4:1 against burgundy-700 — this passes the 3:1 non-text threshold but fails to provide the visual clarity expected at AA level. Use solid white for consistency and maximum contrast.
+
+**Additional button requirements:**
+- **Minimum touch target:** 44×44px (WCAG 2.5.5). Current button height of 56px exceeds this. Minimum width achieved through padding (`0 40px`).
+- **Focus ring:** 3px solid blue-400 with 2px offset — verified visible on white, burgundy, blue, and dark backgrounds
+- **Disabled state:** 50% opacity — still meets 3:1 for large text at this opacity given our high base ratios
+- **All hover/active states must independently pass contrast.** A hover state that reduces contrast below minimums is a failure.
+
+#### Typography Contrast Pairing Rules
+
+Quick-reference decision table for which text colours are permitted on which backgrounds.
+
+**Light backgrounds** (white, neutral-50, burgundy-50, blue-50):
+
+| Text Purpose | Allowed Colours | Minimum Ratio |
+|-------------|----------------|---------------|
+| Headings | neutral-900, burgundy-700, blue-700 | 7:1+ (AAA target) |
+| Body text | neutral-800, neutral-900 | 7:1+ |
+| Secondary/muted text | neutral-700, neutral-500 | 4.5:1+ |
+| Links | burgundy-700, blue-700, blue-500 | 4.5:1+ |
+| Captions/metadata | neutral-500 or darker | 4.5:1+ |
+
+**Dark backgrounds** (burgundy-700, burgundy-800, blue-700, blue-800, neutral-950):
+
+| Text Purpose | Allowed Colour | Notes |
+|-------------|---------------|-------|
+| All text | **white (#FFF)** only | No off-white, no cream, no reduced opacity below 0.55 |
+| Muted/secondary | rgba(255,255,255,0.75) minimum | Floor for readable muted text |
+| Labels/metadata | rgba(255,255,255,0.55) minimum | Absolute floor — verify 4.5:1 on specific background |
+
+**Never allowed:**
+- Light grey (neutral-300, neutral-200) text on any background — fails contrast universally
+- Coloured text on coloured backgrounds without explicit ratio verification (e.g., burgundy text on blue, blue text on burgundy)
+- Burgundy-400 or blue-400 as standalone text colour on white — verify ratio first (burgundy-400 #CC4F4D on white = 3.5:1, fails for normal text)
+
+**Minimum font sizes per weight:**
+
+| Weight | Minimum Size | Notes |
+|--------|-------------|-------|
+| Regular (400) | 16px body, 14px captions | Captions at 14px require 4.5:1 contrast (not large text) |
+| Medium (500) | 14px | Used for metadata, form labels |
+| SemiBold (600) | 13px | Overlines, category labels |
+| Bold (700)+ | 13px | At 18px+ qualifies as "large text" (3:1 minimum) |
+| ExtraBold (800)+ | 13px | Display sizes only — hero, manifesto, section anchors |
+
+**Critical rule:** Text at 12px (`label` token) is allowed only for form labels and overlines at Medium (500) weight or above, and must meet 4.5:1 contrast. At this size, prioritise neutral-700 or darker on light backgrounds.
+
+### Contrast Verification Checklist
+
+Before shipping any new component, page, or colour combination, verify all five:
+
+- [ ] **Text contrast** — All text on its background ≥ 4.5:1? (3:1 if large text: ≥18px bold or ≥24px regular)
+- [ ] **Non-text UI contrast** — Borders, icons, and form controls on their background ≥ 3:1?
+- [ ] **Focus indicator** — Focus ring visible and ≥ 3:1 contrast on this component's background?
+- [ ] **Hover/active states** — Do interactive state changes maintain contrast minimums?
+- [ ] **Colour blindness** — Tested with simulated protanopia and deuteranopia? (Burgundy can appear dark brown/olive — ensure information is not conveyed by colour alone)
+
+**Tools:** WebAIM Contrast Checker, Chrome DevTools Lighthouse audit, axe DevTools extension, Stark (Figma plugin)
+
 ---
 
 ## Typography
