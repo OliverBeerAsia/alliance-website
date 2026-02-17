@@ -175,11 +175,20 @@
     .header-logo {
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: 26px;
+      font-size: 24px;
       color: var(--burgundy-700);
       letter-spacing: -0.02em;
       white-space: nowrap;
       text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .logo-mark {
+      height: 34px;
+      width: 34px;
+      object-fit: cover;
+      border-radius: 4px;
     }
 
     .header-nav {
@@ -1169,6 +1178,7 @@
   <header class="header" role="banner">
     <div class="container">
       <a href="/" class="header-logo" aria-label="The Alliance — Home">
+        <img src="../../06-Assets/alliance party logo type (lo res background).jpg" alt="" class="logo-mark">
         The Alliance
       </a>
       <nav class="header-nav" aria-label="Main navigation">
