@@ -1,0 +1,81 @@
+/* ============================================================
+   RESPONSIVE — All @media queries consolidated
+   ============================================================ */
+@media (max-width: 1023px) {
+  .header-nav { display: none; }
+  .mobile-toggle { display: block; }
+  .mobile-drawer { display: block; }
+  .mobile-overlay { display: block; }
+
+  .hero .container {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .hero::before { display: none; }
+
+  .hero-photo img { height: 320px; }
+
+  .conference-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .conference-photo { order: -1; }
+  .conference-photo img { height: 360px; }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+
+  .footer-tagline-block { margin-bottom: var(--space-12); }
+}
+
+@media (max-width: 767px) {
+  .hero { min-height: auto; }
+  .hero .container {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+  .hero-photo img { height: 260px; }
+
+  .pillars { padding: var(--space-16) 0; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .pillar-card:nth-child(odd) { border-right: none; }
+  .pillar-card { border-bottom: 3px solid var(--burgundy-100); }
+  .pillar-card:last-child { border-bottom: none; }
+
+  .quote-banner { padding: var(--space-20) 0; }
+  .quote-banner::before { display: none; }
+
+  .conference { padding: var(--space-16) 0; }
+  .conference-leaders { flex-direction: column; gap: var(--space-4); }
+
+  .stats { padding: var(--space-16) 0; }
+  .stats::before { display: none; }
+  .stats-grid { grid-template-columns: 1fr; gap: 0; }
+  .stat-item:not(:last-child) {
+    border-right: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  }
+  .stat-item { padding: var(--space-6) 0; }
+
+  .manifesto { padding: var(--space-20) 0; }
+  .manifesto-statement { padding: var(--space-8) 0; }
+
+  .photo-banner { height: 280px; }
+
+  .join { padding: var(--space-20) 0; }
+  .join::before { display: none; }
+  .join-form { flex-direction: column; }
+  .join-form .btn-primary-on-dark { width: 100%; }
+
+  .hero-ctas { flex-direction: column; width: 100%; }
+  .hero-ctas .btn { width: 100%; }
+
+  .footer-tagline-block { margin-bottom: var(--space-10); padding-bottom: var(--space-10); }
+  .footer-grid { grid-template-columns: 1fr; gap: var(--space-6); }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .footer-legal-links { justify-content: center; }
+}
