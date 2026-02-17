@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The Alliance Party — A genuine social democratic alternative for Aotearoa New Zealand. Tax justice, public ownership, free healthcare and education, secure housing.">
-  <title>Alliance Party — A Country That Works For Working People</title>
+  <meta name="description" content="The Alliance — A genuine social democratic alternative for Aotearoa New Zealand. Tax justice, public ownership, free healthcare and education, secure housing.">
+  <title>The Alliance — A Country That Works For Working People</title>
 
-  <!-- Fonts: Three-tier system -->
+  <!-- Fonts: Montserrat (campaign headlines) + Playfair Display (tagline) + Inter (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,700;0,800;0,900&family=Playfair+Display:ital,wght@0,700;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     /* ============================================================
        DESIGN TOKENS — Alliance Design System
-       Grounded in: campaign materials, constitutional identity
+       Colours from Tom Roud campaign materials + party brand
        ============================================================ */
     :root {
       /* Primary — Alliance Burgundy (from brand assets #821918) */
@@ -50,21 +50,13 @@
       --neutral-50: #F7F7F7;
       --white: #FFFFFF;
 
-      /* Semantic */
-      --success: #1A7A3D;
-      --warning: #B8860B;
-      --error: #C41E1E;
-      --info: #2B6CB0;
-
-      /* Typography — Three-tier system
-         Tier 1: Space Grotesk — statement display (Taproot influence)
-         Tier 2: Plus Jakarta Sans — headings & UI
-         Tier 3: Inter — body & reading */
-      --font-display: 'Space Grotesk', sans-serif;
-      --font-heading: 'Plus Jakarta Sans', sans-serif;
+      /* Typography — matched to Tom Roud campaign materials */
+      --font-display: 'Montserrat', sans-serif;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-tagline: 'Playfair Display', Georgia, serif;
       --font-body: 'Inter', sans-serif;
 
-      /* Spacing — 4px base (Blue Marine Foundation discipline) */
+      /* Spacing — 4px base */
       --space-1: 4px;
       --space-2: 8px;
       --space-3: 12px;
@@ -88,12 +80,12 @@
       --radius-md: 8px;
       --radius-lg: 16px;
 
-      /* Shadows (Blue Marine Foundation — refined, not heavy) */
+      /* Shadows */
       --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 -1px 10px 0 rgba(172, 171, 171, 0.08);
       --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(130, 25, 24, 0.08);
       --shadow-header: 0 1px 8px rgba(0, 0, 0, 0.06);
 
-      /* Transitions (Blue Marine Foundation micro-transitions) */
+      /* Transitions */
       --transition-fast: 0.2s ease-in-out;
       --transition-medium: 0.35s ease-in-out;
       --transition-slow: 0.5s ease-in-out;
@@ -127,9 +119,6 @@
     a { color: inherit; text-decoration: none; }
     ul { list-style: none; }
 
-    /* ============================================================
-       UTILITY — Content container
-       ============================================================ */
     .container {
       width: 100%;
       max-width: var(--max-width);
@@ -138,7 +127,7 @@
     }
 
     /* ============================================================
-       SCROLL REVEAL — Sections fade in on scroll
+       SCROLL REVEAL
        ============================================================ */
     .reveal {
       opacity: 0;
@@ -151,9 +140,19 @@
     }
 
     /* ============================================================
-       HEADER — Sticky 72px, white bg
-       EPP influence: dual nav, constant access
-       AOC influence: CTA always visible
+       OVERLINE — Reusable section marker
+       ============================================================ */
+    .overline {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      line-height: 1.4;
+    }
+
+    /* ============================================================
+       HEADER — Sticky 72px
        ============================================================ */
     .header {
       position: fixed;
@@ -166,7 +165,6 @@
       box-shadow: var(--shadow-header);
       display: flex;
       align-items: center;
-      transition: box-shadow var(--transition-fast);
     }
 
     .header .container {
@@ -177,18 +175,19 @@
 
     .header-logo {
       font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 22px;
+      font-weight: 900;
+      font-size: 26px;
       color: var(--burgundy-700);
       letter-spacing: -0.02em;
       white-space: nowrap;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
     }
-    .header-logo span {
-      color: var(--neutral-400);
-      font-weight: 400;
-      font-size: 14px;
-      margin-left: var(--space-2);
-      letter-spacing: 0;
+    .header-logo img {
+      height: 36px;
+      width: auto;
     }
 
     .header-nav {
@@ -199,8 +198,8 @@
 
     .header-nav a {
       font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 14px;
+      font-weight: 700;
+      font-size: 15px;
       color: var(--neutral-700);
       transition: color var(--transition-fast);
       position: relative;
@@ -215,24 +214,24 @@
       background: var(--burgundy-700);
       transition: width var(--transition-fast);
     }
-    .header-nav a:hover {
-      color: var(--burgundy-700);
-    }
-    .header-nav a:hover::after {
-      width: 100%;
-    }
+    .header-nav a:hover { color: var(--burgundy-700); }
+    .header-nav a:hover::after { width: 100%; }
 
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: 48px;
-      padding: 0 var(--space-8);
+      height: 56px;
+      padding: 0 var(--space-10);
       border-radius: var(--radius-md);
       font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 15px;
-      letter-spacing: 0.01em;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
       cursor: pointer;
       border: 2px solid transparent;
       transition: all var(--transition-fast);
@@ -264,11 +263,11 @@
     .btn-secondary-on-dark {
       background: transparent;
       color: var(--white);
-      border-color: rgba(255, 255, 255, 0.5);
+      border-color: rgba(255, 255, 255, 0.7);
     }
     .btn-secondary-on-dark:hover {
       border-color: var(--white);
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.1);
       transform: scale(1.02);
     }
 
@@ -276,10 +275,13 @@
       background: none;
       border: none;
       color: var(--burgundy-700);
-      font-weight: 700;
+      font-weight: 800;
+      font-size: 20px;
       padding: 0;
       height: auto;
       position: relative;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
     }
     .btn-ghost::after {
       content: '';
@@ -293,9 +295,7 @@
       transform-origin: left;
       transition: transform var(--transition-fast);
     }
-    .btn-ghost:hover::after {
-      transform: scaleX(1);
-    }
+    .btn-ghost:hover::after { transform: scaleX(1); }
 
     /* Mobile nav toggle */
     .mobile-toggle {
@@ -319,115 +319,82 @@
     .mobile-toggle span:nth-child(1) { top: 14px; }
     .mobile-toggle span:nth-child(2) { top: 21px; }
     .mobile-toggle span:nth-child(3) { top: 28px; }
-
-    .mobile-toggle.active span:nth-child(1) {
-      top: 21px;
-      transform: rotate(45deg);
-    }
+    .mobile-toggle.active span:nth-child(1) { top: 21px; transform: rotate(45deg); }
     .mobile-toggle.active span:nth-child(2) { opacity: 0; }
-    .mobile-toggle.active span:nth-child(3) {
-      top: 21px;
-      transform: rotate(-45deg);
-    }
+    .mobile-toggle.active span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
 
     /* ============================================================
-       OVERLINE — Reusable section marker
-       ============================================================ */
-    .overline {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      line-height: 1.4;
-    }
-
-    /* ============================================================
-       SECTION 1: HERO
-       Full-bleed burgundy — Die Linke colour-as-identity
-       Typography IS the design — Taproot influence
-       Conversion-first — AOC influence
+       SECTION 1: HERO — Full-bleed burgundy
+       Campaign diagonal shape + conference photo
        ============================================================ */
     .hero {
       background: var(--burgundy-700);
       color: var(--white);
-      padding-top: calc(var(--header-height) + var(--space-32));
-      padding-bottom: var(--space-32);
+      padding-top: var(--header-height);
       position: relative;
       overflow: hidden;
       min-height: 100vh;
       display: flex;
-      align-items: center;
+      align-items: stretch;
     }
 
-    /* Subtle texture — grain overlay for depth */
+    /* Diagonal shape from campaign materials */
     .hero::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 70% 20%, rgba(154, 35, 32, 0.4) 0%, transparent 60%),
-                  radial-gradient(ellipse at 20% 80%, rgba(90, 17, 15, 0.3) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    /* Diagonal accent line — geometric energy */
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: -10%;
-      right: -5%;
-      width: 40%;
-      height: 120%;
-      border-left: 1px solid rgba(255, 255, 255, 0.06);
-      transform: rotate(-12deg);
-      pointer-events: none;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: var(--burgundy-800);
+      clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+      z-index: 1;
     }
 
     .hero .container {
       position: relative;
-      z-index: 1;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: var(--space-16);
+      padding-top: var(--space-20);
+      padding-bottom: var(--space-20);
     }
 
-    .hero-overline {
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: var(--space-6);
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-    }
-    .hero-overline::before {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.4);
+    .hero-content {
+      position: relative;
+      z-index: 2;
     }
 
     .hero-headline {
       font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(44px, 7vw, 88px);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: var(--space-8);
-      max-width: 14ch;
+      font-weight: 900;
+      font-size: clamp(64px, 10vw, 140px);
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+      margin-bottom: var(--space-10);
+      text-transform: uppercase;
     }
 
-    /* Taproot influence: dramatic scale contrast */
     .hero-headline em {
       font-style: normal;
       display: block;
-      font-size: 1.15em;
-      letter-spacing: -0.04em;
+      font-size: 1.4em;
+      letter-spacing: -0.045em;
+      line-height: 0.85;
+      margin-top: 0.02em;
     }
 
     .hero-sub {
-      font-family: var(--font-body);
-      font-size: 20px;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.85);
-      max-width: 540px;
-      margin-bottom: var(--space-10);
+      font-family: var(--font-tagline);
+      font-size: 26px;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.95);
+      max-width: 520px;
+      margin-bottom: var(--space-12);
+      font-weight: 500;
+      font-style: italic;
     }
 
     .hero-ctas {
@@ -436,51 +403,58 @@
       flex-wrap: wrap;
     }
 
-    /* Staggered entry animation for hero content */
-    .hero-overline,
+    /* Hero photo — conference group shot */
+    .hero-photo {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Staggered entry animation */
     .hero-headline,
     .hero-sub,
-    .hero-ctas {
+    .hero-ctas,
+    .hero-photo {
       opacity: 0;
-      transform: translateY(24px);
+      transform: translateY(28px);
       animation: hero-enter 0.8s ease-out forwards;
     }
-    .hero-overline { animation-delay: 0.1s; }
-    .hero-headline { animation-delay: 0.25s; }
-    .hero-sub { animation-delay: 0.45s; }
-    .hero-ctas { animation-delay: 0.6s; }
+    .hero-headline { animation-delay: 0.1s; }
+    .hero-sub { animation-delay: 0.3s; }
+    .hero-ctas { animation-delay: 0.45s; }
+    .hero-photo { animation-delay: 0.2s; transform: translateY(40px); }
 
     @keyframes hero-enter {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ============================================================
-       SECTION 2: POLICY PILLARS
-       EPP influence: card-based, scannable, modular
-       Taproot influence: bold anchor statement
+       SECTION 2: POLICY PILLARS — White bg
+       Bold anchor statement + card grid
        ============================================================ */
     .pillars {
       padding: var(--space-24) 0;
       background: var(--white);
     }
 
-    .pillars-overline {
-      color: var(--burgundy-600);
-      margin-bottom: var(--space-6);
-    }
-
-    /* Taproot: type as design element — this IS the section */
     .pillars-statement {
       font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(28px, 4vw, 52px);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
+      font-weight: 900;
+      font-size: clamp(40px, 6vw, 84px);
+      line-height: 1.0;
+      letter-spacing: -0.035em;
       color: var(--burgundy-700);
-      max-width: 900px;
+      max-width: 1100px;
       margin-bottom: var(--space-16);
     }
     .pillars-statement span {
@@ -505,7 +479,6 @@
       flex-direction: column;
     }
 
-    /* Blue Marine Foundation: refined card hover */
     .pillar-card::before {
       content: '';
       position: absolute;
@@ -521,14 +494,11 @@
       transform: translateY(-4px);
       border-color: var(--burgundy-100);
     }
-    .pillar-card:hover::before {
-      height: 100%;
-    }
+    .pillar-card:hover::before { height: 100%; }
 
     .pillar-icon {
-      font-size: 32px;
+      font-size: 28px;
       margin-bottom: var(--space-5);
-      display: block;
       width: 56px;
       height: 56px;
       background: var(--burgundy-50);
@@ -540,39 +510,18 @@
 
     .pillar-title {
       font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 18px;
+      font-weight: 900;
+      font-size: 24px;
       color: var(--neutral-900);
-      margin-bottom: var(--space-3);
-      line-height: 1.3;
+      margin-bottom: 0;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
     }
 
-    .pillar-desc {
-      font-size: 15px;
-      color: var(--neutral-500);
-      line-height: 1.55;
-      flex: 1;
-    }
-
-    .pillar-link {
-      font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 14px;
-      color: var(--burgundy-700);
-      margin-top: var(--space-5);
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2);
-      transition: gap var(--transition-fast);
-    }
-    .pillar-link:hover {
-      gap: var(--space-3);
-    }
-
-    /* ============================================================
-       SECTION 3: QUOTE BANNER
-       Full-bleed blue — Die Linke colour blocking
-       Pure typography — Taproot influence
+/* ============================================================
+       SECTION 3: QUOTE BANNER — Full-bleed blue
+       Diagonal clip from campaign materials
        ============================================================ */
     .quote-banner {
       background: var(--blue-700);
@@ -582,65 +531,53 @@
       overflow: hidden;
     }
 
-    /* Subtle geometric accent */
+    /* Diagonal accent — campaign poster influence */
     .quote-banner::before {
       content: '';
       position: absolute;
-      top: -20%;
-      left: -10%;
-      width: 50%;
-      height: 140%;
-      border-right: 1px solid rgba(255, 255, 255, 0.05);
-      transform: rotate(8deg);
-      pointer-events: none;
+      top: 0;
+      left: 0;
+      width: 35%;
+      height: 100%;
+      background: var(--blue-800);
+      clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
     }
 
-    .quote-mark {
-      font-family: var(--font-display);
-      font-size: 120px;
-      line-height: 1;
-      color: rgba(255, 255, 255, 0.1);
-      margin-bottom: -40px;
-      display: block;
-    }
-
-    .quote-text {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(24px, 3.5vw, 44px);
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      max-width: 900px;
+    .quote-banner .container {
       position: relative;
       z-index: 1;
     }
 
+    .quote-text {
+      font-family: var(--font-tagline);
+      font-weight: 700;
+      font-size: clamp(34px, 5.5vw, 72px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      max-width: 1000px;
+      position: relative;
+      z-index: 1;
+      font-style: italic;
+    }
+
     .quote-attribution {
       font-family: var(--font-heading);
-      font-weight: 500;
-      font-size: 16px;
-      color: rgba(255, 255, 255, 0.6);
+      font-weight: 800;
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.85);
       margin-top: var(--space-8);
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-    }
-    .quote-attribution::before {
-      content: '';
-      display: block;
-      width: 32px;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     /* ============================================================
-       SECTION 4: CONFERENCE ANNOUNCEMENT
-       Split layout — from campaign materials (publisher ad pattern)
-       EPP: progressive disclosure, clean hierarchy
+       SECTION 4: CONFERENCE — Split layout with photo
+       Campaign materials: angled split composition
        ============================================================ */
     .conference {
       padding: var(--space-24) 0;
       background: var(--white);
+      position: relative;
     }
 
     .conference-grid {
@@ -650,110 +587,100 @@
       align-items: center;
     }
 
-    .conference-overline {
-      color: var(--burgundy-600);
-      margin-bottom: var(--space-4);
-    }
-
     .conference-heading {
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: clamp(28px, 3vw, 40px);
-      line-height: 1.2;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1.0;
       color: var(--neutral-900);
       margin-bottom: var(--space-6);
-      letter-spacing: -0.01em;
+      letter-spacing: -0.035em;
     }
 
     .conference-body {
-      font-size: 17px;
-      line-height: 1.7;
-      color: var(--neutral-700);
+      font-size: 18px;
+      line-height: 1.65;
+      color: var(--neutral-800);
       margin-bottom: var(--space-4);
     }
 
     .conference-leaders {
       display: flex;
-      gap: var(--space-8);
+      gap: var(--space-10);
       margin-top: var(--space-8);
       padding-top: var(--space-6);
-      border-top: 1px solid var(--neutral-100);
-    }
-
-    .leader {
-      display: flex;
-      flex-direction: column;
+      border-top: 3px solid var(--burgundy-700);
     }
 
     .leader-role {
       font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 11px;
+      font-weight: 800;
+      font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: var(--burgundy-600);
+      color: var(--burgundy-700);
       margin-bottom: var(--space-1);
     }
 
     .leader-name {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 18px;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 28px;
       color: var(--neutral-900);
+      letter-spacing: -0.02em;
     }
 
-    /* Image placeholder — split layout right side */
-    .conference-image {
-      background: var(--burgundy-50);
-      border-radius: var(--radius-lg);
-      aspect-ratio: 4 / 3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* Conference photo with diagonal clip — campaign poster style */
+    .conference-photo {
       position: relative;
-      overflow: hidden;
     }
 
-    .conference-image::before {
+    .conference-photo img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+    }
+
+    /* Burgundy accent bar on photo — campaign poster reference */
+    .conference-photo::after {
       content: '';
       position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(135deg, var(--burgundy-100) 0%, transparent 50%),
-        linear-gradient(225deg, var(--blue-50) 0%, transparent 50%);
-      opacity: 0.7;
-    }
-
-    .conference-image-label {
-      font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 14px;
-      color: var(--burgundy-400);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      position: relative;
-      z-index: 1;
+      bottom: -16px;
+      left: 24px;
+      right: 24px;
+      height: 8px;
+      background: var(--burgundy-700);
+      border-radius: 4px;
     }
 
     /* ============================================================
-       SECTION 5: STATISTICS
-       EPP influence: quantifying scale with bold numbers
-       Blue Marine Foundation: statistics grid pattern
+       SECTION 5: STATISTICS — Burgundy full-bleed
+       Bold diagonal shape
        ============================================================ */
     .stats {
       background: var(--burgundy-700);
       color: var(--white);
-      padding: var(--space-20) 0;
+      padding: var(--space-24) 0;
       position: relative;
       overflow: hidden;
     }
 
+    /* Big diagonal from campaign posters */
     .stats::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 30% 50%, rgba(107, 21, 19, 0.5) 0%, transparent 60%);
-      pointer-events: none;
+      top: 0;
+      right: 0;
+      width: 45%;
+      height: 100%;
+      background: var(--burgundy-800);
+      clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .stats .container {
+      position: relative;
+      z-index: 1;
     }
 
     .stats-grid {
@@ -761,42 +688,39 @@
       grid-template-columns: repeat(3, 1fr);
       gap: var(--space-8);
       text-align: center;
-      position: relative;
-      z-index: 1;
     }
 
     .stat-item {
-      padding: var(--space-6);
+      padding: var(--space-8);
     }
 
-    /* Between stats — subtle vertical dividers */
     .stat-item:not(:last-child) {
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      border-right: 2px solid rgba(255, 255, 255, 0.1);
     }
 
     .stat-number {
       font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(40px, 5vw, 64px);
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin-bottom: var(--space-2);
+      font-weight: 900;
+      font-size: clamp(60px, 9vw, 104px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: var(--space-3);
+      text-transform: uppercase;
     }
 
     .stat-label {
       font-family: var(--font-heading);
-      font-weight: 500;
-      font-size: 14px;
+      font-weight: 800;
+      font-size: 16px;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255, 255, 255, 0.75);
     }
 
     /* ============================================================
        SECTION 6: MANIFESTO STATEMENTS
-       Taproot Earth influence — typography IS the design
-       Campaign materials: uppercase declarations + horizontal rules
-       Numbered sections for narrative structure
+       Taproot Earth — typography IS the design
+       Campaign page 4 — uppercase declarations + rules
        ============================================================ */
     .manifesto {
       padding: var(--space-32) 0;
@@ -804,54 +728,55 @@
     }
 
     .manifesto-inner {
-      max-width: 900px;
+      max-width: 1100px;
     }
 
     .manifesto-rule {
       width: 100%;
-      height: 2px;
+      height: 4px;
       background: var(--burgundy-700);
       border: none;
     }
 
     .manifesto-statement {
-      padding: var(--space-10) 0;
-      display: flex;
-      align-items: baseline;
-      gap: var(--space-6);
-    }
-
-    /* Taproot: numbered pillar sections for scannable narrative */
-    .manifesto-number {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 14px;
-      color: var(--burgundy-400);
-      flex-shrink: 0;
-      width: 28px;
+      padding: var(--space-12) 0;
     }
 
     .manifesto-text {
       font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(28px, 4vw, 48px);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+      font-weight: 900;
+      font-size: clamp(40px, 7vw, 88px);
+      line-height: 0.95;
+      letter-spacing: -0.035em;
       text-transform: uppercase;
       color: var(--burgundy-700);
     }
 
-    .manifesto-cta {
-      margin-top: var(--space-12);
-      display: flex;
-      align-items: center;
+/* ============================================================
+       SECTION 7: PHOTO BANNER — Full-bleed conference image
+       Die Linke: bold image section
+       ============================================================ */
+    .photo-banner {
+      position: relative;
+      height: 420px;
+      overflow: hidden;
     }
 
-    /* ============================================================
-       SECTION 7: JOIN CTA
-       Full-bleed burgundy — Die Linke
-       Conversion-first — AOC splash page influence
-       Movement language — Tone of Voice Guide
+    .photo-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(90, 17, 15, 0.3) 0%, transparent 30%);
+    }
+
+/* ============================================================
+       SECTION 8: JOIN CTA — Full-bleed burgundy
        ============================================================ */
     .join {
       background: var(--burgundy-700);
@@ -862,117 +787,133 @@
       overflow: hidden;
     }
 
+    /* Diagonal shape — campaign influence */
     .join::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(154, 35, 32, 0.5) 0%, transparent 50%);
-      pointer-events: none;
+      top: 0;
+      left: 0;
+      width: 40%;
+      height: 100%;
+      background: var(--burgundy-800);
+      clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
     }
 
     .join .container {
       position: relative;
       z-index: 1;
-      max-width: 680px;
+      max-width: 740px;
     }
 
     .join-headline {
       font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(32px, 4vw, 52px);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: var(--space-6);
+      font-weight: 900;
+      font-size: clamp(44px, 6vw, 84px);
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+      margin-bottom: var(--space-8);
+      text-transform: uppercase;
     }
 
     .join-sub {
-      font-size: 18px;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.8);
+      font-family: var(--font-tagline);
+      font-size: 24px;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.95);
       margin-bottom: var(--space-10);
-      max-width: 520px;
+      max-width: 580px;
       margin-left: auto;
       margin-right: auto;
+      font-weight: 500;
+      font-style: italic;
     }
 
-    /* AOC-inspired email capture: minimal fields, maximum conversion */
     .join-form {
       display: flex;
       gap: var(--space-3);
-      max-width: 480px;
+      max-width: 500px;
       margin: 0 auto var(--space-6);
     }
 
     .join-input {
       flex: 1;
-      height: 52px;
+      height: 56px;
       padding: 0 var(--space-5);
       border-radius: var(--radius-md);
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.1);
       color: var(--white);
       font-family: var(--font-body);
       font-size: 16px;
+      font-weight: 500;
       outline: none;
       transition: all var(--transition-fast);
     }
-    .join-input::placeholder {
-      color: rgba(255, 255, 255, 0.4);
-    }
+    .join-input::placeholder { color: rgba(255, 255, 255, 0.5); }
     .join-input:focus {
-      border-color: rgba(255, 255, 255, 0.6);
-      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.15);
     }
 
     .join-form .btn-primary-on-dark {
       flex-shrink: 0;
-      height: 52px;
+      height: 56px;
     }
 
-    .join-trust {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.45);
-    }
-
-    /* ============================================================
-       SECTION 8: FOOTER
-       Neutral-900 — grounded, professional
-       NZ electoral compliance: authorisation line
+/* ============================================================
+       FOOTER — Taproot Earth style
+       Huge tagline top half + structured nav bottom half
        ============================================================ */
     .footer {
-      background: var(--neutral-900);
+      background: var(--neutral-950);
       color: var(--white);
-      padding: var(--space-16) 0 var(--space-8);
+      padding: var(--space-24) 0 0;
+    }
+
+    /* Huge tagline — Taproot "mission statement" style, takes up top half */
+    .footer-tagline-block {
+      margin-bottom: var(--space-20);
+      padding-bottom: var(--space-16);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-tagline-huge {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(44px, 6vw, 96px);
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      max-width: 1000px;
+      text-transform: uppercase;
+    }
+
+    .footer-tagline-sub {
+      font-family: var(--font-tagline);
+      font-weight: 600;
+      font-size: clamp(22px, 2.5vw, 32px);
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: var(--space-6);
+      max-width: 600px;
+      line-height: 1.35;
     }
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1.6fr;
       gap: var(--space-10);
-      margin-bottom: var(--space-12);
-    }
-
-    .footer-brand {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 20px;
-      margin-bottom: var(--space-4);
-    }
-
-    .footer-tagline {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.5);
-      line-height: 1.6;
-      max-width: 280px;
+      padding-bottom: var(--space-16);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
 
     .footer-heading {
       font-family: var(--font-heading);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 13px;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.55);
       margin-bottom: var(--space-5);
     }
 
@@ -981,17 +922,94 @@
     }
 
     .footer-links a {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.65);
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.75);
       transition: color var(--transition-fast);
     }
-    .footer-links a:hover {
+    .footer-links a:hover { color: var(--white); }
+
+    /* Newsletter section */
+    .footer-newsletter-heading {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 22px;
+      margin-bottom: var(--space-3);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+
+    .footer-newsletter-form {
+      display: flex;
+      gap: var(--space-2);
+    }
+
+    .footer-newsletter-input {
+      flex: 1;
+      height: 48px;
+      padding: 0 var(--space-4);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 15px;
+      outline: none;
+      transition: all var(--transition-fast);
+    }
+    .footer-newsletter-input::placeholder { color: rgba(255, 255, 255, 0.4); }
+    .footer-newsletter-input:focus {
+      border-color: rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-newsletter-btn {
+      height: 48px;
+      padding: 0 var(--space-6);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      color: var(--neutral-950);
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+    .footer-newsletter-btn:hover {
+      background: var(--neutral-100);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.6);
+      transition: all var(--transition-fast);
+    }
+    .footer-social a:hover {
+      border-color: rgba(255, 255, 255, 0.5);
       color: var(--white);
     }
 
+    /* Footer bottom bar */
     .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding-top: var(--space-6);
+      padding: var(--space-6) 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1000,40 +1018,26 @@
     }
 
     .footer-legal {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.35);
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.45);
       line-height: 1.6;
     }
 
-    .footer-social {
+    .footer-legal-links {
       display: flex;
-      gap: var(--space-4);
+      gap: var(--space-6);
     }
 
-    .footer-social a {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .footer-legal-links a {
       font-size: 14px;
-      color: rgba(255, 255, 255, 0.5);
-      transition: all var(--transition-fast);
+      color: rgba(255, 255, 255, 0.45);
+      transition: color var(--transition-fast);
     }
-    .footer-social a:hover {
-      border-color: rgba(255, 255, 255, 0.4);
-      color: var(--white);
-      background: rgba(255, 255, 255, 0.05);
-    }
+    .footer-legal-links a:hover { color: rgba(255, 255, 255, 0.75); }
 
     /* ============================================================
        MOBILE RESPONSIVE
-       4-column grid, reduced type scale, stacked layouts
        ============================================================ */
-
-    /* Mobile drawer overlay */
     .mobile-overlay {
       display: none;
       position: fixed;
@@ -1043,9 +1047,7 @@
       opacity: 0;
       transition: opacity var(--transition-fast);
     }
-    .mobile-overlay.active {
-      opacity: 1;
-    }
+    .mobile-overlay.active { opacity: 1; }
 
     .mobile-drawer {
       display: none;
@@ -1060,9 +1062,7 @@
       transition: right var(--transition-medium);
       overflow-y: auto;
     }
-    .mobile-drawer.active {
-      right: 0;
-    }
+    .mobile-drawer.active { right: 0; }
 
     .mobile-drawer a {
       display: block;
@@ -1074,14 +1074,8 @@
       border-bottom: 1px solid var(--neutral-100);
       transition: color var(--transition-fast);
     }
-    .mobile-drawer a:hover {
-      color: var(--burgundy-700);
-    }
-
-    .mobile-drawer .btn {
-      width: 100%;
-      margin-top: var(--space-6);
-    }
+    .mobile-drawer a:hover { color: var(--burgundy-700); }
+    .mobile-drawer .btn { width: 100%; margin-top: var(--space-6); }
 
     @media (max-width: 1023px) {
       .header-nav { display: none; }
@@ -1089,117 +1083,80 @@
       .mobile-drawer { display: block; }
       .mobile-overlay { display: block; }
 
-      .pillars-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .hero .container {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
       }
+
+      .hero::before { display: none; }
+
+      .hero-photo img { height: 320px; }
+
+      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
 
       .conference-grid {
         grid-template-columns: 1fr;
         gap: var(--space-8);
       }
 
-      .conference-image {
-        order: -1;
-        aspect-ratio: 16 / 9;
-      }
+      .conference-photo { order: -1; }
+      .conference-photo img { height: 360px; }
 
       .footer-grid {
         grid-template-columns: 1fr 1fr;
         gap: var(--space-8);
       }
+
+      .footer-tagline-block { margin-bottom: var(--space-12); }
     }
 
     @media (max-width: 767px) {
-      .hero {
-        padding-top: calc(var(--header-height) + var(--space-20));
-        padding-bottom: var(--space-20);
-        min-height: auto;
+      .hero { min-height: auto; }
+      .hero .container {
+        padding-top: var(--space-12);
+        padding-bottom: var(--space-12);
       }
+      .hero-photo img { height: 260px; }
 
-      .pillars {
-        padding: var(--space-16) 0;
-      }
+      .pillars { padding: var(--space-16) 0; }
+      .pillars-grid { grid-template-columns: 1fr; gap: var(--space-4); }
 
-      .pillars-grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-4);
-      }
+      .quote-banner { padding: var(--space-20) 0; }
+      .quote-banner::before { display: none; }
 
-      .quote-banner {
-        padding: var(--space-20) 0;
-      }
+      .conference { padding: var(--space-16) 0; }
+      .conference-leaders { flex-direction: column; gap: var(--space-4); }
 
-      .quote-mark {
-        font-size: 72px;
-        margin-bottom: -24px;
-      }
-
-      .conference {
-        padding: var(--space-16) 0;
-      }
-
-      .conference-leaders {
-        flex-direction: column;
-        gap: var(--space-4);
-      }
-
-      .stats-grid {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
-
+      .stats { padding: var(--space-16) 0; }
+      .stats::before { display: none; }
+      .stats-grid { grid-template-columns: 1fr; gap: 0; }
       .stat-item:not(:last-child) {
         border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
       }
+      .stat-item { padding: var(--space-6) 0; }
 
-      .stat-item {
-        padding: var(--space-6) 0;
-      }
+      .manifesto { padding: var(--space-20) 0; }
+      .manifesto-statement { padding: var(--space-8) 0; }
 
-      .manifesto {
-        padding: var(--space-20) 0;
-      }
+      .photo-banner { height: 280px; }
 
-      .manifesto-statement {
-        gap: var(--space-3);
-        padding: var(--space-6) 0;
-      }
+      .join { padding: var(--space-20) 0; }
+      .join::before { display: none; }
+      .join-form { flex-direction: column; }
+      .join-form .btn-primary-on-dark { width: 100%; }
 
-      .join {
-        padding: var(--space-20) 0;
-      }
+      .hero-ctas { flex-direction: column; width: 100%; }
+      .hero-ctas .btn { width: 100%; }
 
-      .join-form {
-        flex-direction: column;
-      }
-
-      .join-form .btn-primary-on-dark {
-        width: 100%;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-6);
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .hero-ctas {
-        flex-direction: column;
-        width: 100%;
-      }
-      .hero-ctas .btn {
-        width: 100%;
-      }
+      .footer-tagline-block { margin-bottom: var(--space-10); padding-bottom: var(--space-10); }
+      .footer-grid { grid-template-columns: 1fr; gap: var(--space-6); }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-legal-links { justify-content: center; }
     }
 
     /* ============================================================
-       FOCUS STATES — Accessibility (WCAG 2.1 AA)
-       Blue-400 focus ring, visible on keyboard only
+       FOCUS STATES — WCAG 2.1 AA
        ============================================================ */
     :focus-visible {
       outline: 3px solid var(--blue-400);
@@ -1211,9 +1168,6 @@
       outline: none;
     }
 
-    /* ============================================================
-       SELECTION
-       ============================================================ */
     ::selection {
       background: var(--burgundy-700);
       color: var(--white);
@@ -1223,29 +1177,21 @@
 
 <body>
 
-  <!-- ============================================================
-       HEADER — Sticky, always-accessible navigation
-       EPP: constant access pattern
-       AOC: CTA always visible
-       ============================================================ -->
+  <!-- HEADER -->
   <header class="header" role="banner">
     <div class="container">
-      <a href="/" class="header-logo" aria-label="Alliance Party Home">
-        ALLIANCE<span>Aotearoa NZ</span>
+      <a href="/" class="header-logo" aria-label="The Alliance — Home">
+        <img src="../../06-Assets/alliance party logo (lo res full background).jpg" alt="The Alliance logo" style="height: 40px; width: auto; border-radius: 4px;">
       </a>
-
       <nav class="header-nav" aria-label="Main navigation">
         <a href="#policies">What We Stand For</a>
         <a href="#news">News</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
-        <a href="#join" class="btn btn-primary">Join the Alliance</a>
+        <a href="#join" class="btn btn-primary">Join The Alliance</a>
       </nav>
-
       <button class="mobile-toggle" aria-label="Open menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
     </div>
   </header>
@@ -1258,119 +1204,82 @@
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
     <a href="#join">Get Involved</a>
-    <a href="#join" class="btn btn-primary">Join the Alliance</a>
+    <a href="#join" class="btn btn-primary">Join The Alliance</a>
   </nav>
-
 
   <main>
 
-    <!-- ============================================================
-         SECTION 1: HERO
-         Full-bleed burgundy — Die Linke colour-as-identity
-         Typography IS the hero — Taproot Earth
-         Conversion-first — AOC
-         ============================================================ -->
+    <!-- HERO — Burgundy + conference photo + diagonal shape -->
     <section class="hero" aria-labelledby="hero-headline">
       <div class="container">
-        <p class="overline hero-overline">7 November 2026 — General Election</p>
-        <h1 id="hero-headline" class="hero-headline">
-          The Alliance<br><em>is back.</em>
-        </h1>
-        <p class="hero-sub">
-          A genuine social democratic alternative to the failed policies of the status&nbsp;quo.
-        </p>
-        <div class="hero-ctas">
-          <a href="#join" class="btn btn-primary-on-dark">Join the Movement</a>
-          <a href="#policies" class="btn btn-secondary-on-dark">Our Policies</a>
+        <div class="hero-content">
+          <h1 id="hero-headline" class="hero-headline">
+            The Alliance<br><em>is back</em>
+          </h1>
+          <p class="hero-sub">
+            A genuine social democratic alternative to the failed policies of the status&nbsp;quo.
+          </p>
+          <div class="hero-ctas">
+            <a href="#join" class="btn btn-primary-on-dark">Join the Movement</a>
+            <a href="#policies" class="btn btn-secondary-on-dark">Our Policies</a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="../../06-Assets/alliance party group conference.jpg" alt="The Alliance members gathered at the 2026 National Conference in Christchurch" loading="eager">
         </div>
       </div>
     </section>
 
-
-    <!-- ============================================================
-         SECTION 2: POLICY PILLARS
-         EPP: card-based, scannable
-         Taproot: bold anchor statement dominates section
-         Campaign materials: policy headline energy
-         ============================================================ -->
+    <!-- POLICY PILLARS -->
     <section class="pillars reveal" id="policies" aria-labelledby="pillars-heading">
       <div class="container">
-        <p class="overline pillars-overline">What We Stand For</p>
         <h2 id="pillars-heading" class="pillars-statement">
           Tax justice<span>.</span> Public ownership<span>.</span><br>
           Free healthcare and education<span>.</span><br>
           Secure housing<span>.</span>
         </h2>
-
         <div class="pillars-grid">
           <a href="#" class="pillar-card">
             <div class="pillar-icon" aria-hidden="true">⚖</div>
             <h3 class="pillar-title">Tax Justice</h3>
-            <p class="pillar-desc">A fair tax system that asks more from those who have the most — and less from wage&nbsp;earners.</p>
-            <span class="pillar-link">Read more →</span>
           </a>
-
           <a href="#" class="pillar-card">
             <div class="pillar-icon" aria-hidden="true">🏛</div>
             <h3 class="pillar-title">Public Ownership</h3>
-            <p class="pillar-desc">Essential services run for people, not profit. Water, power, rail — back in public&nbsp;hands.</p>
-            <span class="pillar-link">Read more →</span>
           </a>
-
           <a href="#" class="pillar-card">
             <div class="pillar-icon" aria-hidden="true">🏥</div>
             <h3 class="pillar-title">Free Healthcare &amp; Education</h3>
-            <p class="pillar-desc">Because these are rights, not privileges. Fully funded, universally&nbsp;accessible.</p>
-            <span class="pillar-link">Read more →</span>
           </a>
-
           <a href="#" class="pillar-card">
             <div class="pillar-icon" aria-hidden="true">🏠</div>
             <h3 class="pillar-title">Secure Housing</h3>
-            <p class="pillar-desc">Affordable homes for all New Zealanders. Not speculative assets for the&nbsp;few.</p>
-            <span class="pillar-link">Read more →</span>
           </a>
         </div>
       </div>
     </section>
 
-
-    <!-- ============================================================
-         SECTION 3: QUOTE BANNER
-         Full-bleed blue — Die Linke colour rhythm
-         Pure typography — Taproot (language IS the design)
-         ============================================================ -->
+    <!-- QUOTE BANNER — Blue + diagonal -->
     <section class="quote-banner reveal" aria-label="Quote from party leader">
       <div class="container">
-        <span class="quote-mark" aria-hidden="true">"</span>
         <blockquote class="quote-text">
-          The Alliance is back to offer a genuine social democratic alternative to the failed policies of the status&nbsp;quo.
+          The Alliance is back — to offer a genuine social democratic alternative to the failed policies of the status&nbsp;quo.
         </blockquote>
         <p class="quote-attribution">Victor Billot, Party Leader</p>
       </div>
     </section>
 
-
-    <!-- ============================================================
-         SECTION 4: CONFERENCE ANNOUNCEMENT
-         Split layout — from campaign print materials
-         EPP: progressive disclosure, clean hierarchy
-         ============================================================ -->
+    <!-- CONFERENCE — Split layout with photo -->
     <section class="conference reveal" id="news" aria-labelledby="conference-heading">
       <div class="container">
         <div class="conference-grid">
           <div class="conference-content">
-            <p class="overline conference-overline">Ōtautahi Christchurch — February 2026</p>
             <h2 id="conference-heading" class="conference-heading">
-              Conference confirms<br>election campaign
+              Conference confirms election campaign
             </h2>
             <p class="conference-body">
-              Members from across Aotearoa gathered at the Trade Union Centre to ratify the party's constitution, elect national officers, and confirm the policy platform for the upcoming general&nbsp;election.
+              Members from across Aotearoa gathered at the Trade Union Centre to ratify the constitution, elect officers, and confirm the policy platform. The Alliance will stand candidates across the country for 7 November&nbsp;2026.
             </p>
-            <p class="conference-body">
-              The Conference confirmed the Alliance's strategy to stand candidates in key electorates across the country for 7 November&nbsp;2026.
-            </p>
-
             <div class="conference-leaders">
               <div class="leader">
                 <span class="leader-role">Party Leader</span>
@@ -1382,21 +1291,14 @@
               </div>
             </div>
           </div>
-
-          <div class="conference-image" aria-label="Conference photo placeholder">
-            <span class="conference-image-label">Conference Photo</span>
+          <div class="conference-photo">
+            <img src="../../06-Assets/alliance party group conference 2.jpg" alt="The Alliance members at the 2026 National Conference" loading="lazy">
           </div>
         </div>
       </div>
     </section>
 
-
-    <!-- ============================================================
-         SECTION 5: STATISTICS
-         Full-bleed burgundy — Die Linke rhythm
-         EPP: quantifying scale, bold numbers
-         Blue Marine Foundation: statistics grid pattern
-         ============================================================ -->
+    <!-- STATISTICS — Burgundy + diagonal -->
     <section class="stats reveal" aria-label="Key statistics">
       <div class="container">
         <div class="stats-grid">
@@ -1416,92 +1318,66 @@
       </div>
     </section>
 
-
-    <!-- ============================================================
-         SECTION 6: MANIFESTO STATEMENTS
-         Taproot Earth — typography IS the design
-         Campaign materials — uppercase declarations + horizontal rules
-         Numbered for narrative structure (Taproot pillars)
-         ============================================================ -->
+    <!-- MANIFESTO STATEMENTS -->
     <section class="manifesto reveal" aria-label="Policy declarations">
       <div class="container">
         <div class="manifesto-inner">
           <hr class="manifesto-rule">
-
           <div class="manifesto-statement">
-            <span class="manifesto-number">01</span>
             <p class="manifesto-text">Keep and expand our public&nbsp;assets</p>
           </div>
-
           <hr class="manifesto-rule">
-
           <div class="manifesto-statement">
-            <span class="manifesto-number">02</span>
             <p class="manifesto-text">Secure work for&nbsp;all</p>
           </div>
-
           <hr class="manifesto-rule">
-
           <div class="manifesto-statement">
-            <span class="manifesto-number">03</span>
             <p class="manifesto-text">Free healthcare. Free&nbsp;education.</p>
           </div>
-
           <hr class="manifesto-rule">
-
           <div class="manifesto-statement">
-            <span class="manifesto-number">04</span>
             <p class="manifesto-text">A country that works for working&nbsp;people</p>
           </div>
-
           <hr class="manifesto-rule">
-
-          <div class="manifesto-cta">
-            <a href="#" class="btn-ghost">Read Our Full Platform →</a>
-          </div>
         </div>
       </div>
     </section>
 
+    <!-- PHOTO BANNER — Full-bleed conference image -->
+    <section class="photo-banner reveal" aria-label="Conference gathering">
+      <img src="../../06-Assets/alliance party group conference.jpg" alt="The Alliance conference members with banner" loading="lazy">
+    </section>
 
-    <!-- ============================================================
-         SECTION 7: JOIN CTA
-         Full-bleed burgundy — Die Linke
-         AOC: conversion-first, splash page energy
-         Tone of Voice: movement-building, collective language
-         ============================================================ -->
+    <!-- JOIN CTA — Burgundy + diagonal -->
     <section class="join reveal" id="join" aria-labelledby="join-heading">
       <div class="container">
         <h2 id="join-heading" class="join-headline">
-          Together, we can build<br>a fairer Aotearoa.
+          Together, we can build a fairer&nbsp;Aotearoa.
         </h2>
         <p class="join-sub">
           No corporate donors. No hidden agendas. Just people who believe we can do&nbsp;better.
         </p>
         <form class="join-form" action="#" method="post" aria-label="Email signup">
           <input type="email" class="join-input" placeholder="your@email.com" aria-label="Email address" required>
-          <button type="submit" class="btn btn-primary-on-dark">Join the Alliance</button>
+          <button type="submit" class="btn btn-primary-on-dark">Join The Alliance</button>
         </form>
-        <p class="join-trust">We respect your privacy. Unsubscribe at any time.</p>
       </div>
     </section>
 
   </main>
 
-
-  <!-- ============================================================
-       FOOTER
-       Neutral-900 — grounded
-       NZ electoral compliance: authorisation line
-       ============================================================ -->
+  <!-- FOOTER — Taproot Earth style -->
   <footer class="footer" role="contentinfo">
     <div class="container">
-      <div class="footer-grid">
-        <div>
-          <p class="footer-brand">Alliance</p>
-          <p class="footer-tagline">A country that works for working people. Democratic socialist politics for Aotearoa New&nbsp;Zealand.</p>
-        </div>
 
+      <!-- Huge tagline — top half of footer -->
+      <div class="footer-tagline-block">
+        <p class="footer-tagline-huge">A country that works for working&nbsp;people.</p>
+        <p class="footer-tagline-sub">Democratic socialist politics for Aotearoa New&nbsp;Zealand.</p>
+      </div>
+
+      <div class="footer-grid">
+        <!-- Column 1: Party -->
         <div>
           <p class="footer-heading">Party</p>
           <ul class="footer-links">
@@ -1512,6 +1388,7 @@
           </ul>
         </div>
 
+        <!-- Column 2: Get Involved -->
         <div>
           <p class="footer-heading">Get Involved</p>
           <ul class="footer-links">
@@ -1522,36 +1399,47 @@
           </ul>
         </div>
 
+        <!-- Column 3: Connect -->
         <div>
           <p class="footer-heading">Connect</p>
           <ul class="footer-links">
             <li><a href="#">News</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="#">Media Enquiries</a></li>
-            <li><a href="#">Privacy Policy</a></li>
           </ul>
+        </div>
+
+        <!-- Column 4: Newsletter -->
+        <div>
+          <p class="footer-newsletter-heading">Get the Newsletter</p>
+          <form class="footer-newsletter-form" action="#" method="post">
+            <input type="email" class="footer-newsletter-input" placeholder="Email address" aria-label="Email for newsletter" required>
+            <button type="submit" class="footer-newsletter-btn">Subscribe</button>
+          </form>
+          <div class="footer-social" aria-label="Social media">
+            <a href="#" aria-label="Facebook">Fb</a>
+            <a href="#" aria-label="Instagram">Ig</a>
+            <a href="#" aria-label="Twitter / X">X</a>
+          </div>
         </div>
       </div>
 
+      <!-- Footer bottom — legal + electoral compliance -->
       <div class="footer-bottom">
         <div class="footer-legal">
-          <p>© 2026 Alliance Party of New Zealand.</p>
+          <p>© 2026 The Alliance. All rights reserved.</p>
           <p>Authorised by V. Billot, 123 Example Street, Christchurch.</p>
         </div>
-        <div class="footer-social" aria-label="Social media links">
-          <a href="#" aria-label="Facebook">Fb</a>
-          <a href="#" aria-label="Instagram">Ig</a>
-          <a href="#" aria-label="Twitter / X">X</a>
+        <div class="footer-legal-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms</a>
+          <a href="#">Accessibility</a>
         </div>
       </div>
     </div>
   </footer>
 
-
-  <!-- ============================================================
-       JAVASCRIPT — Minimal: mobile nav + scroll reveal
-       Performance: no libraries, vanilla JS only
-       ============================================================ -->
+  <!-- JAVASCRIPT -->
   <script>
     // Mobile navigation
     const toggle = document.querySelector('.mobile-toggle');
@@ -1577,20 +1465,16 @@
     }
 
     toggle.addEventListener('click', () => {
-      const isOpen = toggle.classList.contains('active');
-      isOpen ? closeDrawer() : openDrawer();
+      toggle.classList.contains('active') ? closeDrawer() : openDrawer();
     });
 
     overlay.addEventListener('click', closeDrawer);
-
-    // Close drawer when clicking nav links
     drawer.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', closeDrawer);
     });
 
-    // Scroll reveal — IntersectionObserver (performant)
+    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
-
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1598,21 +1482,16 @@
           revealObserver.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -60px 0px'
-    });
-
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
     reveals.forEach(el => revealObserver.observe(el));
 
-    // Smooth scroll for anchor links
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(link => {
       link.addEventListener('click', (e) => {
         const target = document.querySelector(link.getAttribute('href'));
         if (target) {
           e.preventDefault();
-          const offset = 80; // header height + buffer
-          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          const top = target.getBoundingClientRect().top + window.pageYOffset - 80;
           window.scrollTo({ top, behavior: 'smooth' });
         }
       });
