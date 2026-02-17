@@ -107,3 +107,10 @@
 }
 .mobile-drawer a:hover { color: var(--burgundy-700); }
 .mobile-drawer .btn { width: 100%; margin-top: var(--space-6); }
+
+/* ============================================================
+   ACTIVE NAV STATE — Current page indicator
+   ============================================================ */
+.header-nav a[aria-current="page"]:not(.btn) { color: var(--burgundy-700); }
+.header-nav a[aria-current="page"]:not(.btn)::after { width: 100%; }
+.mobile-drawer a[aria-current="page"] { color: var(--burgundy-700); }

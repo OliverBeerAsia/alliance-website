@@ -441,3 +441,275 @@
   margin-right: auto;
   font-weight: 500;
 }
+
+/* ============================================================
+   INTERIOR HERO — Solid burgundy, centred text, diagonal accent
+   Used on all interior pages (About, Policy, etc.)
+   ============================================================ */
+.interior-hero {
+  background: var(--burgundy-700);
+  color: var(--white);
+  padding-top: calc(var(--header-height) + var(--space-20));
+  padding-bottom: var(--space-20);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.interior-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45%;
+  height: 100%;
+  background: var(--burgundy-800);
+  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+  z-index: 0;
+}
+
+.interior-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.interior-hero-overline {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: var(--space-4);
+}
+
+.interior-hero-headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   PROSE SECTION — Centred reading content for interior pages
+   740px max-width for comfortable reading
+   ============================================================ */
+.prose-section {
+  padding: var(--space-24) 0;
+  background: var(--white);
+}
+
+.prose-inner {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.prose-heading {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(36px, 4.5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--burgundy-700);
+  margin-bottom: var(--space-8);
+  text-transform: uppercase;
+}
+
+.prose-lead {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--neutral-800);
+  margin-bottom: var(--space-6);
+}
+
+.prose-inner p {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--neutral-800);
+  margin-bottom: var(--space-6);
+}
+
+.prose-inner p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================================
+   PRINCIPLES — 2-column card grid on neutral-50 bg
+   10 constitutional principles
+   ============================================================ */
+.principles {
+  padding: var(--space-24) 0;
+  background: var(--neutral-50);
+}
+
+.principles-heading {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(36px, 4.5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--burgundy-700);
+  margin-bottom: var(--space-4);
+  text-transform: uppercase;
+}
+
+.principles-intro {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--neutral-700);
+  max-width: 740px;
+  margin-bottom: var(--space-12);
+}
+
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+}
+
+.principle-card {
+  padding: var(--space-8);
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  position: relative;
+}
+
+.principle-number {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 40px;
+  color: var(--burgundy-100);
+  line-height: 1;
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.04em;
+}
+
+.principle-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--burgundy-700);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-3);
+  line-height: 1.2;
+}
+
+.principle-desc {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--neutral-700);
+}
+
+/* ============================================================
+   HISTORY — Era blocks with year markers
+   Inside .prose-section, wider max-width
+   ============================================================ */
+.history-inner {
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.history-era {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: var(--space-8);
+  padding: var(--space-10) 0;
+  border-top: 3px solid var(--burgundy-100);
+}
+
+.history-era:first-of-type {
+  border-top: 3px solid var(--burgundy-700);
+}
+
+.history-year {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(40px, 5vw, 56px);
+  line-height: 1;
+  color: var(--burgundy-700);
+  letter-spacing: -0.04em;
+}
+
+.history-era-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--neutral-900);
+  margin-bottom: var(--space-3);
+  line-height: 1.2;
+}
+
+.history-content p {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--neutral-800);
+  margin-bottom: var(--space-4);
+}
+
+.history-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================================
+   LEADERSHIP — Officer cards on tinted background
+   ============================================================ */
+.leadership {
+  padding: var(--space-24) 0;
+  background: var(--burgundy-50);
+}
+
+.leadership-heading {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(36px, 4.5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--burgundy-700);
+  margin-bottom: var(--space-4);
+  text-transform: uppercase;
+}
+
+.leadership-intro {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--neutral-700);
+  margin-bottom: var(--space-12);
+}
+
+.leadership-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-8);
+}
+
+.leadership-card {
+  padding: var(--space-8);
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  border-top: 4px solid var(--burgundy-700);
+}
+
+.leadership-card .leader-role {
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.leadership-card .leader-name {
+  display: block;
+  margin-bottom: var(--space-4);
+}
+
+.leader-bio {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--neutral-700);
+}
