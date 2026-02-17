@@ -1,0 +1,443 @@
+/* ============================================================
+   SECTION 1: HERO — Full-bleed burgundy
+   Campaign diagonal shape + conference photo
+   ============================================================ */
+.hero {
+  background: var(--burgundy-700);
+  color: var(--white);
+  padding-top: var(--header-height);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Diagonal shape from campaign materials */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: var(--burgundy-800);
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+  z-index: 1;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: var(--space-16);
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-20);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(64px, 10vw, 140px);
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  margin-bottom: var(--space-10);
+  text-transform: uppercase;
+}
+
+.hero-headline em {
+  font-style: normal;
+  display: block;
+  font-size: 1.4em;
+  letter-spacing: -0.045em;
+  line-height: 0.85;
+  margin-top: 0.02em;
+}
+
+.hero-sub {
+  font-family: var(--font-body);
+  font-size: 22px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 520px;
+  margin-bottom: var(--space-12);
+  font-weight: 500;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+/* Hero photo — conference group shot */
+.hero-photo {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+}
+
+/* Staggered entry animation */
+.hero-headline,
+.hero-sub,
+.hero-ctas,
+.hero-photo {
+  opacity: 0;
+  transform: translateY(28px);
+  animation: hero-enter 0.8s ease-out forwards;
+}
+.hero-headline { animation-delay: 0.1s; }
+.hero-sub { animation-delay: 0.3s; }
+.hero-ctas { animation-delay: 0.45s; }
+.hero-photo { animation-delay: 0.2s; transform: translateY(40px); }
+
+@keyframes hero-enter {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   SECTION 2: POLICY PILLARS — White bg
+   Bold anchor statement + card grid
+   ============================================================ */
+.pillars {
+  padding: var(--space-24) 0;
+  background: var(--white);
+}
+
+.pillars-statement {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(40px, 6vw, 84px);
+  line-height: 1.0;
+  letter-spacing: -0.035em;
+  color: var(--burgundy-700);
+  max-width: 1100px;
+  margin-bottom: var(--space-16);
+}
+.pillars-statement span {
+  color: var(--neutral-300);
+}
+
+/* ============================================================
+   SECTION 3: QUOTE BANNER — Full-bleed blue
+   Diagonal clip from campaign materials
+   ============================================================ */
+.quote-banner {
+  background: var(--blue-700);
+  color: var(--white);
+  padding: var(--space-32) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Diagonal accent — campaign poster influence */
+.quote-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35%;
+  height: 100%;
+  background: var(--blue-800);
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+}
+
+.quote-banner .container {
+  position: relative;
+  z-index: 1;
+}
+
+.quote-text {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(34px, 5.5vw, 72px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  max-width: 1000px;
+  position: relative;
+  z-index: 1;
+}
+
+.quote-attribution {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: var(--space-8);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   SECTION 4: CONFERENCE — Split layout with photo
+   Campaign materials: angled split composition
+   ============================================================ */
+.conference {
+  padding: var(--space-24) 0;
+  background: var(--white);
+  position: relative;
+}
+
+.conference-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.conference-heading {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.0;
+  color: var(--neutral-900);
+  margin-bottom: var(--space-6);
+  letter-spacing: -0.035em;
+}
+
+.conference-body {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--neutral-800);
+  margin-bottom: var(--space-4);
+}
+
+.conference-leaders {
+  display: flex;
+  gap: var(--space-10);
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 3px solid var(--burgundy-700);
+}
+
+.leader-role {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--burgundy-700);
+  margin-bottom: var(--space-1);
+}
+
+.leader-name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 28px;
+  color: var(--neutral-900);
+  letter-spacing: -0.02em;
+}
+
+/* Conference photo with diagonal clip — campaign poster style */
+.conference-photo {
+  position: relative;
+}
+
+.conference-photo img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+/* Burgundy accent bar on photo — campaign poster reference */
+.conference-photo::after {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: 24px;
+  right: 24px;
+  height: 8px;
+  background: var(--burgundy-700);
+  border-radius: 4px;
+}
+
+/* ============================================================
+   SECTION 5: STATISTICS — Burgundy full-bleed
+   Bold diagonal shape
+   ============================================================ */
+.stats {
+  background: var(--burgundy-700);
+  color: var(--white);
+  padding: var(--space-24) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Big diagonal from campaign posters */
+.stats::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45%;
+  height: 100%;
+  background: var(--burgundy-800);
+  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.stats .container {
+  position: relative;
+  z-index: 1;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+  text-align: center;
+}
+
+.stat-item {
+  padding: var(--space-8);
+}
+
+.stat-item:not(:last-child) {
+  border-right: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(60px, 9vw, 104px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: var(--space-3);
+  text-transform: uppercase;
+}
+
+.stat-label {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ============================================================
+   SECTION 6: MANIFESTO STATEMENTS
+   Taproot Earth — typography IS the design
+   Campaign page 4 — uppercase declarations + rules
+   ============================================================ */
+.manifesto {
+  padding: var(--space-32) 0;
+  background: var(--white);
+}
+
+.manifesto-inner {
+  max-width: 1100px;
+}
+
+.manifesto-rule {
+  width: 100%;
+  height: 4px;
+  background: var(--burgundy-700);
+  border: none;
+}
+
+.manifesto-statement {
+  padding: var(--space-12) 0;
+}
+
+.manifesto-text {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(40px, 7vw, 88px);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  color: var(--burgundy-700);
+}
+
+/* ============================================================
+   SECTION 7: PHOTO BANNER — Full-bleed conference image
+   Die Linke: bold image section
+   ============================================================ */
+.photo-banner {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+}
+
+.photo-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(90, 17, 15, 0.3) 0%, transparent 30%);
+}
+
+/* ============================================================
+   SECTION 8: JOIN CTA — Full-bleed burgundy
+   ============================================================ */
+.join {
+  background: var(--burgundy-700);
+  color: var(--white);
+  padding: var(--space-32) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Diagonal shape — campaign influence */
+.join::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: var(--burgundy-800);
+  clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
+}
+
+.join .container {
+  position: relative;
+  z-index: 1;
+  max-width: 740px;
+}
+
+.join-headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(44px, 6vw, 84px);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  margin-bottom: var(--space-8);
+  text-transform: uppercase;
+}
+
+.join-sub {
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--space-10);
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 500;
+}

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Alliance — A genuine social democratic alternative for Aotearoa New Zealand. Tax justice, public ownership, free healthcare and education, secure housing.">
+  <title>The Alliance — A Country That Works For Working People</title>
+
+  <!-- Fonts: Montserrat (campaign headlines) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Design System Foundation -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/utilities.css">
+
+  <!-- Components -->
+  <link rel="stylesheet" href="css/buttons.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/footer.css">
+
+  <!-- Page Sections & Responsive -->
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header" role="banner">
+    <div class="container">
+      <a href="/" class="header-logo" aria-label="The Alliance — Home">
+        <img src="../../06-Assets/alliance party logo type (lo res background).jpg" alt="" class="logo-mark">
+        The Alliance
+      </a>
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="#policies">What We Stand For</a>
+        <a href="#news">News</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#join" class="btn btn-primary">Join The Alliance</a>
+      </nav>
+      <button class="mobile-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-overlay" aria-hidden="true"></div>
+  <nav class="mobile-drawer" aria-label="Mobile navigation" aria-hidden="true">
+    <a href="#policies">What We Stand For</a>
+    <a href="#news">News</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="#join">Get Involved</a>
+    <a href="#join" class="btn btn-primary">Join The Alliance</a>
+  </nav>
+
+  <main>
+
+    <!-- HERO — Burgundy + conference photo + diagonal shape -->
+    <section class="hero" aria-labelledby="hero-headline">
+      <div class="container">
+        <div class="hero-content">
+          <h1 id="hero-headline" class="hero-headline">
+            The Alliance<br><em>is back</em>
+          </h1>
+          <p class="hero-sub">
+            A genuine social democratic alternative to the failed policies of the status&nbsp;quo.
+          </p>
+          <div class="hero-ctas">
+            <a href="#join" class="btn btn-primary-on-dark">Join the Movement</a>
+            <a href="#policies" class="btn btn-secondary-on-dark">Our Policies</a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="../../06-Assets/alliance party group conference.jpg" alt="The Alliance members gathered at the 2026 National Conference in Christchurch" loading="eager">
+        </div>
+      </div>
+    </section>
+
+    <!-- POLICY PILLARS -->
+    <section class="pillars reveal" id="policies" aria-labelledby="pillars-heading">
+      <div class="container">
+        <h2 id="pillars-heading" class="pillars-statement">
+          Tax justice<span>.</span> Public ownership<span>.</span><br>
+          Free healthcare and education<span>.</span><br>
+          Secure housing<span>.</span>
+        </h2>
+        <div class="pillars-grid">
+          <a href="#" class="pillar-card">
+            <h3 class="pillar-title">Secure, well-paid work</h3>
+            <span class="pillar-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="#" class="pillar-card">
+            <h3 class="pillar-title">Free healthcare &amp; education</h3>
+            <span class="pillar-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="#" class="pillar-card">
+            <h3 class="pillar-title">Affordable housing &amp; power</h3>
+            <span class="pillar-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="#" class="pillar-card">
+            <h3 class="pillar-title">Public ownership of key assets</h3>
+            <span class="pillar-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUOTE BANNER — Blue + diagonal -->
+    <section class="quote-banner reveal" aria-label="Quote from party leader">
+      <div class="container">
+        <blockquote class="quote-text">
+          The Alliance is back — to offer a genuine social democratic alternative to the failed policies of the status&nbsp;quo.
+        </blockquote>
+        <p class="quote-attribution">Victor Billot, Party Leader</p>
+      </div>
+    </section>
+
+    <!-- CONFERENCE — Split layout with photo -->
+    <section class="conference reveal" id="news" aria-labelledby="conference-heading">
+      <div class="container">
+        <div class="conference-grid">
+          <div class="conference-content">
+            <h2 id="conference-heading" class="conference-heading">
+              Conference confirms election campaign
+            </h2>
+            <p class="conference-body">
+              Members from across Aotearoa gathered at the Trade Union Centre to ratify the constitution, elect officers, and confirm the policy platform. The Alliance will stand candidates across the country for 7 November&nbsp;2026.
+            </p>
+            <div class="conference-leaders">
+              <div class="leader">
+                <span class="leader-role">Party Leader</span>
+                <span class="leader-name">Victor Billot</span>
+              </div>
+              <div class="leader">
+                <span class="leader-role">Party President</span>
+                <span class="leader-name">Tom Roud</span>
+              </div>
+            </div>
+          </div>
+          <div class="conference-photo">
+            <img src="../../06-Assets/alliance party group conference 2.jpg" alt="The Alliance members at the 2026 National Conference" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATISTICS — Burgundy + diagonal -->
+    <section class="stats reveal" aria-label="Key statistics">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">7 Nov</div>
+            <div class="stat-label">Election Day 2026</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Members at Conference</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">All</div>
+            <div class="stat-label">Across Aotearoa</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MANIFESTO STATEMENTS -->
+    <section class="manifesto reveal" aria-label="Policy declarations">
+      <div class="container">
+        <div class="manifesto-inner">
+          <hr class="manifesto-rule">
+          <div class="manifesto-statement">
+            <p class="manifesto-text">Keep and expand our public&nbsp;assets</p>
+          </div>
+          <hr class="manifesto-rule">
+          <div class="manifesto-statement">
+            <p class="manifesto-text">Secure work for&nbsp;all</p>
+          </div>
+          <hr class="manifesto-rule">
+          <div class="manifesto-statement">
+            <p class="manifesto-text">Free healthcare. Free&nbsp;education.</p>
+          </div>
+          <hr class="manifesto-rule">
+          <div class="manifesto-statement">
+            <p class="manifesto-text">A country that works for working&nbsp;people</p>
+          </div>
+          <hr class="manifesto-rule">
+        </div>
+      </div>
+    </section>
+
+    <!-- PHOTO BANNER — Full-bleed conference image -->
+    <section class="photo-banner reveal" aria-label="Conference gathering">
+      <img src="../../06-Assets/alliance party group conference.jpg" alt="The Alliance conference members with banner" loading="lazy">
+    </section>
+
+    <!-- JOIN CTA — Burgundy + diagonal -->
+    <section class="join reveal" id="join" aria-labelledby="join-heading">
+      <div class="container">
+        <h2 id="join-heading" class="join-headline">
+          Together, we can build a fairer&nbsp;Aotearoa.
+        </h2>
+        <p class="join-sub">
+          No corporate donors. No hidden agendas. Just people who believe we can do&nbsp;better.
+        </p>
+        <form class="join-form" action="#" method="post" aria-label="Email signup">
+          <input type="email" class="join-input" placeholder="your@email.com" aria-label="Email address" required>
+          <button type="submit" class="btn btn-primary-on-dark">Join The Alliance</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER — Taproot Earth style -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+
+      <!-- Huge tagline — top half of footer -->
+      <div class="footer-tagline-block">
+        <p class="footer-tagline-huge">A country that works for working&nbsp;people.</p>
+        <p class="footer-tagline-sub">Democratic socialist politics for Aotearoa New&nbsp;Zealand.</p>
+      </div>
+
+      <div class="footer-grid">
+        <!-- Column 1: Party -->
+        <div>
+          <p class="footer-heading">Party</p>
+          <ul class="footer-links">
+            <li><a href="#">What We Stand For</a></li>
+            <li><a href="#">Our History</a></li>
+            <li><a href="#">Constitution</a></li>
+            <li><a href="#">Leadership</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Get Involved -->
+        <div>
+          <p class="footer-heading">Get Involved</p>
+          <ul class="footer-links">
+            <li><a href="#">Join</a></li>
+            <li><a href="#">Volunteer</a></li>
+            <li><a href="#">Donate</a></li>
+            <li><a href="#">Events</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Connect -->
+        <div>
+          <p class="footer-heading">Connect</p>
+          <ul class="footer-links">
+            <li><a href="#">News</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Media Enquiries</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Newsletter -->
+        <div>
+          <p class="footer-newsletter-heading">Get the Newsletter</p>
+          <form class="footer-newsletter-form" action="#" method="post">
+            <input type="email" class="footer-newsletter-input" placeholder="Email address" aria-label="Email for newsletter" required>
+            <button type="submit" class="footer-newsletter-btn">Subscribe</button>
+          </form>
+          <div class="footer-social" aria-label="Social media">
+            <a href="#" aria-label="Facebook">Fb</a>
+            <a href="#" aria-label="Instagram">Ig</a>
+            <a href="#" aria-label="Twitter / X">X</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer bottom -->
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <p><strong>&copy; 2026 The Alliance.</strong> No corporate donors. No hidden agendas.</p>
+          <p>Authorised by V. Billot, 123 Example Street, Christchurch.</p>
+        </div>
+        <div class="footer-legal-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+</body>
+</html>
