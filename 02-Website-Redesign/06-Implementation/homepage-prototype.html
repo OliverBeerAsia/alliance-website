@@ -463,60 +463,50 @@
 
     .pillars-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-6);
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
     }
 
     .pillar-card {
-      background: var(--white);
-      border: 1px solid var(--neutral-100);
-      border-radius: var(--radius-md);
-      padding: var(--space-8);
-      transition: all var(--transition-medium);
-      position: relative;
-      overflow: hidden;
+      padding: var(--space-10) var(--space-8);
+      border-bottom: 3px solid var(--burgundy-100);
+      transition: all var(--transition-fast);
       display: flex;
-      flex-direction: column;
+      align-items: baseline;
+      gap: var(--space-5);
+      text-decoration: none;
     }
-
-    .pillar-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 0;
-      background: var(--burgundy-700);
-      transition: height var(--transition-medium);
+    .pillar-card:nth-child(odd) {
+      border-right: 3px solid var(--burgundy-100);
+    }
+    .pillar-card:nth-last-child(-n+2) {
+      border-bottom: none;
     }
     .pillar-card:hover {
-      box-shadow: var(--shadow-card-hover);
-      transform: translateY(-4px);
-      border-color: var(--burgundy-100);
-    }
-    .pillar-card:hover::before { height: 100%; }
-
-    .pillar-icon {
-      font-size: 28px;
-      margin-bottom: var(--space-5);
-      width: 56px;
-      height: 56px;
       background: var(--burgundy-50);
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    }
+    .pillar-card:hover .pillar-arrow {
+      transform: translateX(4px);
     }
 
     .pillar-title {
       font-family: var(--font-heading);
       font-weight: 900;
-      font-size: 24px;
-      color: var(--neutral-900);
-      margin-bottom: 0;
-      line-height: 1.2;
+      font-size: clamp(22px, 2.5vw, 32px);
+      color: var(--burgundy-700);
+      line-height: 1.15;
       text-transform: uppercase;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
+      flex: 1;
+    }
+
+    .pillar-arrow {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--burgundy-400);
+      transition: transform var(--transition-fast);
+      flex-shrink: 0;
     }
 
 /* ============================================================
@@ -1004,33 +994,48 @@
       color: var(--white);
     }
 
-    /* Footer bottom bar */
+    /* Footer bottom bar — 37signals-inspired: bold, readable, modern */
     .footer-bottom {
-      padding: var(--space-6) 0;
+      padding: var(--space-8) 0;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       flex-wrap: wrap;
-      gap: var(--space-4);
+      gap: var(--space-6);
     }
 
     .footer-legal {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.45);
-      line-height: 1.6;
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.7;
+    }
+
+    .footer-legal strong {
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
     }
 
     .footer-legal-links {
       display: flex;
-      gap: var(--space-6);
+      gap: var(--space-2);
     }
 
     .footer-legal-links a {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.45);
-      transition: color var(--transition-fast);
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.55);
+      transition: all var(--transition-fast);
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
-    .footer-legal-links a:hover { color: rgba(255, 255, 255, 0.75); }
+    .footer-legal-links a:hover {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.08);
+    }
 
     /* ============================================================
        MOBILE RESPONSIVE
@@ -1089,7 +1094,6 @@
 
       .hero-photo img { height: 320px; }
 
-      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
 
       .conference-grid {
         grid-template-columns: 1fr;
@@ -1116,7 +1120,10 @@
       .hero-photo img { height: 260px; }
 
       .pillars { padding: var(--space-16) 0; }
-      .pillars-grid { grid-template-columns: 1fr; gap: var(--space-4); }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .pillar-card:nth-child(odd) { border-right: none; }
+      .pillar-card { border-bottom: 3px solid var(--burgundy-100); }
+      .pillar-card:last-child { border-bottom: none; }
 
       .quote-banner { padding: var(--space-20) 0; }
       .quote-banner::before { display: none; }
@@ -1238,20 +1245,20 @@
         </h2>
         <div class="pillars-grid">
           <a href="#" class="pillar-card">
-            <div class="pillar-icon" aria-hidden="true">⚖</div>
-            <h3 class="pillar-title">Tax Justice</h3>
+            <h3 class="pillar-title">Secure, well-paid work</h3>
+            <span class="pillar-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="#" class="pillar-card">
-            <div class="pillar-icon" aria-hidden="true">🏛</div>
-            <h3 class="pillar-title">Public Ownership</h3>
+            <h3 class="pillar-title">Free healthcare &amp; education</h3>
+            <span class="pillar-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="#" class="pillar-card">
-            <div class="pillar-icon" aria-hidden="true">🏥</div>
-            <h3 class="pillar-title">Free Healthcare &amp; Education</h3>
+            <h3 class="pillar-title">Affordable housing &amp; power</h3>
+            <span class="pillar-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <a href="#" class="pillar-card">
-            <div class="pillar-icon" aria-hidden="true">🏠</div>
-            <h3 class="pillar-title">Secure Housing</h3>
+            <h3 class="pillar-title">Public ownership of key assets</h3>
+            <span class="pillar-arrow" aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </div>
@@ -1422,14 +1429,14 @@
         </div>
       </div>
 
-      <!-- Footer bottom — legal + electoral compliance -->
+      <!-- Footer bottom -->
       <div class="footer-bottom">
         <div class="footer-legal">
-          <p>© 2026 The Alliance. All rights reserved.</p>
+          <p><strong>© 2026 The Alliance.</strong> No corporate donors. No hidden agendas.</p>
           <p>Authorised by V. Billot, 123 Example Street, Christchurch.</p>
         </div>
         <div class="footer-legal-links">
-          <a href="#">Privacy Policy</a>
+          <a href="#">Privacy</a>
           <a href="#">Terms</a>
           <a href="#">Accessibility</a>
         </div>
