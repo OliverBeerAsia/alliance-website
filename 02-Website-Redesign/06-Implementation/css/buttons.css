@@ -92,11 +92,12 @@
   display: block;
   width: 24px;
   height: 2px;
-  background: var(--neutral-900);
+  background: var(--white);
   position: absolute;
   left: 10px;
   transition: all var(--transition-fast);
 }
+.header-scrolled .mobile-toggle span { background: var(--neutral-900); }
 .mobile-toggle span:nth-child(1) { top: 14px; }
 .mobile-toggle span:nth-child(2) { top: 21px; }
 .mobile-toggle span:nth-child(3) { top: 28px; }

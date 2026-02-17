@@ -1,5 +1,5 @@
 /* ============================================================
-   HEADER — Sticky 72px
+   HEADER — Transparent over hero, solid on scroll
    ============================================================ */
 .header {
   position: fixed;
@@ -8,10 +8,17 @@
   right: 0;
   z-index: 1000;
   height: var(--header-height);
-  background: var(--white);
-  box-shadow: var(--shadow-header);
+  background: transparent;
+  box-shadow: none;
   display: flex;
   align-items: center;
+  transition: background var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+/* Solid state — activated by JS on scroll */
+.header.header-scrolled {
+  background: var(--white);
+  box-shadow: var(--shadow-header);
 }
 
 .header .container {
@@ -20,18 +27,22 @@
   justify-content: space-between;
 }
 
+/* Logo — white by default, burgundy when scrolled */
 .header-logo {
   font-family: var(--font-display);
   font-weight: 900;
   font-size: 24px;
-  color: var(--burgundy-700);
+  color: var(--white);
   letter-spacing: -0.02em;
   white-space: nowrap;
   text-transform: uppercase;
   display: flex;
   align-items: center;
   gap: var(--space-2);
+  transition: color var(--transition-medium);
 }
+.header-scrolled .header-logo { color: var(--burgundy-700); }
+
 .logo-mark {
   height: 34px;
   width: 34px;
@@ -45,14 +56,17 @@
   gap: var(--space-8);
 }
 
+/* Nav links — white by default, dark when scrolled */
 .header-nav a:not(.btn) {
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 15px;
-  color: var(--neutral-700);
+  color: rgba(255, 255, 255, 0.85);
   transition: color var(--transition-fast);
   position: relative;
 }
+.header-scrolled .header-nav a:not(.btn) { color: var(--neutral-700); }
+
 .header-nav a:not(.btn)::after {
   content: '';
   position: absolute;
@@ -60,10 +74,13 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--burgundy-700);
-  transition: width var(--transition-fast);
+  background: var(--white);
+  transition: width var(--transition-fast), background var(--transition-fast);
 }
-.header-nav a:not(.btn):hover { color: var(--burgundy-700); }
+.header-scrolled .header-nav a:not(.btn)::after { background: var(--burgundy-700); }
+
+.header-nav a:not(.btn):hover { color: var(--white); }
+.header-scrolled .header-nav a:not(.btn):hover { color: var(--burgundy-700); }
 .header-nav a:not(.btn):hover::after { width: 100%; }
 
 /* ============================================================
@@ -111,6 +128,7 @@
 /* ============================================================
    ACTIVE NAV STATE — Current page indicator
    ============================================================ */
-.header-nav a[aria-current="page"]:not(.btn) { color: var(--burgundy-700); }
+.header-nav a[aria-current="page"]:not(.btn) { color: var(--white); }
 .header-nav a[aria-current="page"]:not(.btn)::after { width: 100%; }
+.header-scrolled .header-nav a[aria-current="page"]:not(.btn) { color: var(--burgundy-700); }
 .mobile-drawer a[aria-current="page"] { color: var(--burgundy-700); }

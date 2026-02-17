@@ -29,7 +29,7 @@
     gap: var(--space-8);
   }
 
-  .footer-tagline-block { margin-bottom: var(--space-12); }
+  .footer-tagline-block { margin-bottom: var(--space-8); }
 
   .leadership-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -95,7 +95,7 @@
   .leadership { padding: var(--space-16) 0; }
   .leadership-grid { grid-template-columns: 1fr; }
 
-  .footer-tagline-block { margin-bottom: var(--space-10); padding-bottom: var(--space-10); }
+  .footer-tagline-block { margin-bottom: var(--space-6); padding-bottom: var(--space-6); }
   .footer-grid { grid-template-columns: 1fr; gap: var(--space-6); }
   .footer-bottom { flex-direction: column; text-align: center; }
   .footer-legal-links { justify-content: center; }

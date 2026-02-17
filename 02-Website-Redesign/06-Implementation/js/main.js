@@ -30,6 +30,18 @@ drawer.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', closeDrawer);
 });
 
+// Header scroll — transparent to solid
+const header = document.querySelector('.header');
+function updateHeader() {
+  if (window.scrollY > 50) {
+    header.classList.add('header-scrolled');
+  } else {
+    header.classList.remove('header-scrolled');
+  }
+}
+window.addEventListener('scroll', updateHeader, { passive: true });
+updateHeader();
+
 // Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {
