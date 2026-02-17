@@ -1,0 +1,42 @@
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   OVERLINE — Reusable section marker
+   ============================================================ */
+.overline {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   FOCUS STATES — WCAG 2.1 AA
+   ============================================================ */
+:focus-visible {
+  outline: 3px solid var(--blue-400);
+  outline-offset: 2px;
+}
+
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+::selection {
+  background: var(--burgundy-700);
+  color: var(--white);
+}
