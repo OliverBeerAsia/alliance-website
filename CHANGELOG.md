@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.3.0] — 2026-02-17
+
+### Added
+- **About page** (`about.html`) — first interior page with 9 sections: interior hero, who we are, 10 constitutional principles grid, quote banner, full party history (1991–2026), photo banner, leadership, join CTA, footer
+- Interior page CSS patterns in `sections.css`: `.interior-hero`, `.prose-section`, `.principles` grid, `.history-era` timeline, `.leadership` grid
+- Responsive rules for all new interior page patterns
+- Active nav state (`aria-current="page"`) styling in `nav.css`
+
+### Changed
+- Navigation links in `index.html` updated for multi-page navigation (About → `about.html`)
+
+---
+
 ## [0.2.0] — 2026-02-17
 
 ### Added

@@ -30,6 +30,8 @@
   }
 
   .footer-tagline-block { margin-bottom: var(--space-12); }
+
+  .leadership-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 767px) {
@@ -73,6 +75,25 @@
 
   .hero-ctas { flex-direction: column; width: 100%; }
   .hero-ctas .btn { width: 100%; }
+
+  /* Interior hero */
+  .interior-hero { padding-top: calc(var(--header-height) + var(--space-12)); padding-bottom: var(--space-12); }
+  .interior-hero::before { display: none; }
+
+  /* Prose section */
+  .prose-section { padding: var(--space-16) 0; }
+
+  /* Principles grid */
+  .principles { padding: var(--space-16) 0; }
+  .principles-grid { grid-template-columns: 1fr; }
+
+  /* History eras */
+  .history-era { grid-template-columns: 1fr; gap: var(--space-3); }
+  .history-year { font-size: 36px; }
+
+  /* Leadership */
+  .leadership { padding: var(--space-16) 0; }
+  .leadership-grid { grid-template-columns: 1fr; }
 
   .footer-tagline-block { margin-bottom: var(--space-10); padding-bottom: var(--space-10); }
   .footer-grid { grid-template-columns: 1fr; gap: var(--space-6); }
