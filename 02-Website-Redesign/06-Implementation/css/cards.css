@@ -1,0 +1,50 @@
+/* ============================================================
+   CARDS — Pillar cards (policy grid)
+   ============================================================ */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+
+.pillar-card {
+  padding: var(--space-10) var(--space-8);
+  border-bottom: 3px solid var(--burgundy-100);
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-5);
+  text-decoration: none;
+}
+.pillar-card:nth-child(odd) {
+  border-right: 3px solid var(--burgundy-100);
+}
+.pillar-card:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+.pillar-card:hover {
+  background: var(--burgundy-50);
+}
+.pillar-card:hover .pillar-arrow {
+  transform: translateX(4px);
+}
+
+.pillar-title {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(22px, 2.5vw, 32px);
+  color: var(--burgundy-700);
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  flex: 1;
+}
+
+.pillar-arrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--burgundy-400);
+  transition: transform var(--transition-fast);
+  flex-shrink: 0;
+}
