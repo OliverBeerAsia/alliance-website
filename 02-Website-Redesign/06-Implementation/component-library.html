@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alliance Design System — Component Library</title>
+
+  <!-- Fonts: same as production -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Production CSS (same files as index.html) -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/buttons.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Component library layout styles only -->
+  <style>
+    /* Library-specific layout — NOT production styles */
+    .lib-page {
+      padding-top: var(--space-16);
+    }
+
+    .lib-section {
+      padding: var(--space-12) 0;
+      border-bottom: 1px solid var(--neutral-200);
+    }
+
+    .lib-section:last-child {
+      border-bottom: none;
+    }
+
+    .lib-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 48px;
+      color: var(--burgundy-700);
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-2);
+    }
+
+    .lib-subtitle {
+      font-family: var(--font-body);
+      font-size: 18px;
+      color: var(--neutral-500);
+      margin-bottom: var(--space-10);
+    }
+
+    .lib-heading {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--neutral-900);
+      margin-bottom: var(--space-6);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .lib-label {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--neutral-500);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--space-3);
+    }
+
+    .lib-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      align-items: center;
+      margin-bottom: var(--space-8);
+    }
+
+    .lib-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+    }
+
+    .lib-dark-bg {
+      background: var(--burgundy-700);
+      padding: var(--space-8);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-8);
+    }
+
+    .lib-dark-bg-blue {
+      background: var(--blue-700);
+      padding: var(--space-8);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-8);
+    }
+
+    .lib-dark-bg-footer {
+      background: var(--neutral-950);
+      padding: var(--space-8);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-8);
+    }
+
+    /* Colour swatches */
+    .swatch {
+      text-align: center;
+    }
+
+    .swatch-color {
+      width: 100%;
+      height: 64px;
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-2);
+      border: 1px solid var(--neutral-200);
+    }
+
+    .swatch-name {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--neutral-700);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--neutral-500);
+    }
+
+    /* Spacing demo blocks */
+    .spacing-demo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-3);
+    }
+
+    .spacing-block {
+      background: var(--burgundy-100);
+      border-radius: var(--radius-sm);
+      height: 32px;
+    }
+
+    .spacing-label {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--neutral-700);
+      min-width: 100px;
+    }
+
+    /* Type scale demo */
+    .type-demo {
+      margin-bottom: var(--space-6);
+    }
+
+    .type-meta {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--neutral-500);
+      margin-bottom: var(--space-2);
+    }
+
+    /* Section preview wrapper */
+    .lib-section-preview {
+      border: 1px solid var(--neutral-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: var(--space-8);
+    }
+
+    .lib-section-preview-label {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--neutral-500);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: var(--space-3) var(--space-4);
+      background: var(--neutral-50);
+      border-bottom: 1px solid var(--neutral-200);
+    }
+
+    /* Utility demos */
+    .reveal-demo {
+      display: flex;
+      gap: var(--space-6);
+      align-items: flex-start;
+    }
+
+    .reveal-demo-box {
+      width: 200px;
+      height: 100px;
+      background: var(--burgundy-100);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--burgundy-700);
+    }
+
+    /* Nav anchor links */
+    .lib-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: var(--shadow-header);
+      padding: var(--space-3) var(--space-6);
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      overflow-x: auto;
+    }
+
+    .lib-nav-brand {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 16px;
+      color: var(--burgundy-700);
+      text-transform: uppercase;
+      white-space: nowrap;
+      letter-spacing: -0.02em;
+    }
+
+    .lib-nav a:not(.lib-nav-brand) {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--neutral-500);
+      white-space: nowrap;
+      transition: color var(--transition-fast);
+    }
+
+    .lib-nav a:not(.lib-nav-brand):hover {
+      color: var(--burgundy-700);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Library navigation -->
+  <nav class="lib-nav" aria-label="Component library navigation">
+    <a href="#" class="lib-nav-brand">Alliance DS</a>
+    <a href="#colours">Colours</a>
+    <a href="#typography">Typography</a>
+    <a href="#spacing">Spacing</a>
+    <a href="#buttons">Buttons</a>
+    <a href="#forms">Forms</a>
+    <a href="#cards">Cards</a>
+    <a href="#navigation">Navigation</a>
+    <a href="#footer-section">Footer</a>
+    <a href="#sections">Sections</a>
+    <a href="#utilities">Utilities</a>
+  </nav>
+
+  <div class="lib-page">
+    <div class="container">
+
+      <!-- Header -->
+      <div style="padding: var(--space-12) 0; border-bottom: 4px solid var(--burgundy-700);">
+        <h1 class="lib-title">Alliance Design System</h1>
+        <p class="lib-subtitle">Living component library — linked to the same CSS files as the production site.</p>
+      </div>
+
+      <!-- ============================================================
+           1. COLOUR TOKENS
+           ============================================================ -->
+      <section class="lib-section" id="colours">
+        <h2 class="lib-heading">Colour Tokens</h2>
+
+        <p class="lib-label">Primary — Alliance Burgundy</p>
+        <div class="lib-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--burgundy-900);"></div>
+            <div class="swatch-name">burgundy-900</div>
+            <div class="swatch-hex">#5A110F</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--burgundy-800);"></div>
+            <div class="swatch-name">burgundy-800</div>
+            <div class="swatch-hex">#6B1513</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--burgundy-700);"></div>
+            <div class="swatch-name">burgundy-700</div>
+            <div class="swatch-hex">#821918</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--burgundy-600);"></div>
+            <div class="swatch-name">burgundy-600</div>
+            <div class="swatch-hex">#9A2320</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--burgundy-500);"></div>
+            <div class="swatch-name">burgundy-500</div>
+            <div class="swatch-hex">#B33230</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--burgundy-400);"></div>
+            <div class="swatch-name">burgundy-400</div>
+            <div class="swatch-hex">#CC4F4D</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--burgundy-100);"></div>
+            <div class="swatch-name">burgundy-100</div>
+            <div class="swatch-hex">#F5E0DF</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--burgundy-50);"></div>
+            <div class="swatch-name">burgundy-50</div>
+            <div class="swatch-hex">#FBF0EF</div>
+          </div>
+        </div>
+
+        <p class="lib-label">Secondary — Alliance Blue</p>
+        <div class="lib-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--blue-900);"></div>
+            <div class="swatch-name">blue-900</div>
+            <div class="swatch-hex">#1A2456</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--blue-800);"></div>
+            <div class="swatch-name">blue-800</div>
+            <div class="swatch-hex">#222F6E</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--blue-700);"></div>
+            <div class="swatch-name">blue-700</div>
+            <div class="swatch-hex">#2B3A8C</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--blue-600);"></div>
+            <div class="swatch-name">blue-600</div>
+            <div class="swatch-hex">#3548A8</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--blue-500);"></div>
+            <div class="swatch-name">blue-500</div>
+            <div class="swatch-hex">#4A5FBF</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--blue-400);"></div>
+            <div class="swatch-name">blue-400</div>
+            <div class="swatch-hex">#6B7FD4</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--blue-100);"></div>
+            <div class="swatch-name">blue-100</div>
+            <div class="swatch-hex">#E0E4F5</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--blue-50);"></div>
+            <div class="swatch-name">blue-50</div>
+            <div class="swatch-hex">#F0F1FB</div>
+          </div>
+        </div>
+
+        <p class="lib-label">Neutrals</p>
+        <div class="lib-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--neutral-950);"></div>
+            <div class="swatch-name">neutral-950</div>
+            <div class="swatch-hex">#0F0F0F</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--neutral-900);"></div>
+            <div class="swatch-name">neutral-900</div>
+            <div class="swatch-hex">#1A1A1A</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--neutral-800);"></div>
+            <div class="swatch-name">neutral-800</div>
+            <div class="swatch-hex">#2D2D2D</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--neutral-700);"></div>
+            <div class="swatch-name">neutral-700</div>
+            <div class="swatch-hex">#404040</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--neutral-500);"></div>
+            <div class="swatch-name">neutral-500</div>
+            <div class="swatch-hex">#6B6B6B</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--neutral-400);"></div>
+            <div class="swatch-name">neutral-400</div>
+            <div class="swatch-hex">#8C8C8C</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--neutral-300);"></div>
+            <div class="swatch-name">neutral-300</div>
+            <div class="swatch-hex">#B3B3B3</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--neutral-200);"></div>
+            <div class="swatch-name">neutral-200</div>
+            <div class="swatch-hex">#D4D4D4</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--neutral-100);"></div>
+            <div class="swatch-name">neutral-100</div>
+            <div class="swatch-hex">#EBEBEB</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--neutral-50);"></div>
+            <div class="swatch-name">neutral-50</div>
+            <div class="swatch-hex">#F7F7F7</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background: var(--white); border-color: var(--neutral-300);"></div>
+            <div class="swatch-name">white</div>
+            <div class="swatch-hex">#FFFFFF</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           2. TYPOGRAPHY SCALE
+           ============================================================ -->
+      <section class="lib-section" id="typography">
+        <h2 class="lib-heading">Typography Scale</h2>
+
+        <div class="type-demo">
+          <p class="type-meta">display — Montserrat 900, clamp(64px, 10vw, 140px)</p>
+          <p style="font-family: var(--font-display); font-weight: 900; font-size: clamp(64px, 10vw, 140px); line-height: 0.88; letter-spacing: -0.04em; text-transform: uppercase; color: var(--burgundy-700);">The Alliance</p>
+        </div>
+
+        <div class="type-demo">
+          <p class="type-meta">display-lg — Montserrat 900, clamp(40px, 6vw, 84px)</p>
+          <p style="font-family: var(--font-display); font-weight: 900; font-size: clamp(40px, 6vw, 84px); line-height: 1.0; letter-spacing: -0.035em; text-transform: uppercase; color: var(--burgundy-700);">Tax Justice. Public Ownership.</p>
+        </div>
+
+        <div class="type-demo">
+          <p class="type-meta">display-md — Montserrat 900, clamp(40px, 5vw, 64px)</p>
+          <p style="font-family: var(--font-display); font-weight: 900; font-size: clamp(40px, 5vw, 64px); line-height: 1.0; letter-spacing: -0.035em; color: var(--neutral-900);">Conference confirms election campaign</p>
+        </div>
+
+        <div class="type-demo">
+          <p class="type-meta">h1 — Montserrat 700, 36px</p>
+          <h1>Heading Level 1</h1>
+        </div>
+
+        <div class="type-demo">
+          <p class="type-meta">h2 — Montserrat 700, 28px</p>
+          <h2>Heading Level 2</h2>
+        </div>
+
+        <div class="type-demo">
+          <p class="type-meta">h3 — Montserrat 700, 22px</p>
+          <h3>Heading Level 3</h3>
+        </div>
+
+        <div class="type-demo">
+          <p class="type-meta">h4 — Montserrat 700, 18px</p>
+          <h4>Heading Level 4</h4>
+        </div>
+
+        <div class="type-demo">
+          <p class="type-meta">body-lg — Inter 500, 22px</p>
+          <p style="font-family: var(--font-body); font-size: 22px; line-height: 1.5; font-weight: 500; color: var(--neutral-800);">A genuine social democratic alternative to the failed policies of the status quo.</p>
+        </div>
+
+        <div class="type-demo">
+          <p class="type-meta">body — Inter 400, 16px/1.6</p>
+          <p>Members from across Aotearoa gathered at the Trade Union Centre to ratify the constitution, elect officers, and confirm the policy platform. The Alliance will stand candidates across the country for 7 November 2026.</p>
+        </div>
+
+        <div class="type-demo">
+          <p class="type-meta">overline — Montserrat 800, 14px, uppercase, tracking 0.12em</p>
+          <span class="overline" style="color: var(--burgundy-700);">Policy Platform</span>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           3. SPACING SCALE
+           ============================================================ -->
+      <section class="lib-section" id="spacing">
+        <h2 class="lib-heading">Spacing Scale</h2>
+
+        <div class="spacing-demo">
+          <span class="spacing-label">space-1 (4px)</span>
+          <div class="spacing-block" style="width: 4px;"></div>
+        </div>
+        <div class="spacing-demo">
+          <span class="spacing-label">space-2 (8px)</span>
+          <div class="spacing-block" style="width: 8px;"></div>
+        </div>
+        <div class="spacing-demo">
+          <span class="spacing-label">space-3 (12px)</span>
+          <div class="spacing-block" style="width: 12px;"></div>
+        </div>
+        <div class="spacing-demo">
+          <span class="spacing-label">space-4 (16px)</span>
+          <div class="spacing-block" style="width: 16px;"></div>
+        </div>
+        <div class="spacing-demo">
+          <span class="spacing-label">space-6 (24px)</span>
+          <div class="spacing-block" style="width: 24px;"></div>
+        </div>
+        <div class="spacing-demo">
+          <span class="spacing-label">space-8 (32px)</span>
+          <div class="spacing-block" style="width: 32px;"></div>
+        </div>
+        <div class="spacing-demo">
+          <span class="spacing-label">space-10 (40px)</span>
+          <div class="spacing-block" style="width: 40px;"></div>
+        </div>
+        <div class="spacing-demo">
+          <span class="spacing-label">space-12 (48px)</span>
+          <div class="spacing-block" style="width: 48px;"></div>
+        </div>
+        <div class="spacing-demo">
+          <span class="spacing-label">space-16 (64px)</span>
+          <div class="spacing-block" style="width: 64px;"></div>
+        </div>
+        <div class="spacing-demo">
+          <span class="spacing-label">space-20 (80px)</span>
+          <div class="spacing-block" style="width: 80px;"></div>
+        </div>
+        <div class="spacing-demo">
+          <span class="spacing-label">space-24 (96px)</span>
+          <div class="spacing-block" style="width: 96px;"></div>
+        </div>
+        <div class="spacing-demo">
+          <span class="spacing-label">space-32 (128px)</span>
+          <div class="spacing-block" style="width: 128px;"></div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           4. BUTTONS
+           ============================================================ -->
+      <section class="lib-section" id="buttons">
+        <h2 class="lib-heading">Buttons</h2>
+
+        <p class="lib-label">On light background</p>
+        <div class="lib-row">
+          <a href="#" class="btn btn-primary">Primary Button</a>
+          <a href="#" class="btn btn-ghost">Ghost Link</a>
+        </div>
+
+        <p class="lib-label">On dark background (burgundy)</p>
+        <div class="lib-dark-bg">
+          <div class="lib-row" style="margin-bottom: 0;">
+            <a href="#" class="btn btn-primary-on-dark">Primary on Dark</a>
+            <a href="#" class="btn btn-secondary-on-dark">Secondary on Dark</a>
+          </div>
+        </div>
+
+        <p class="lib-label">On dark background (blue)</p>
+        <div class="lib-dark-bg-blue">
+          <div class="lib-row" style="margin-bottom: 0;">
+            <a href="#" class="btn btn-primary-on-dark">Primary on Dark</a>
+            <a href="#" class="btn btn-secondary-on-dark">Secondary on Dark</a>
+          </div>
+        </div>
+
+        <p class="lib-label">Button in nav context (specificity fix demo)</p>
+        <div style="background: var(--white); box-shadow: var(--shadow-header); padding: var(--space-4) var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
+          <nav class="header-nav" style="display: flex; align-items: center; gap: var(--space-8);">
+            <a href="#">Nav Link</a>
+            <a href="#" class="btn btn-primary">Join The Alliance</a>
+          </nav>
+        </div>
+
+        <p class="lib-label">Mobile toggle button</p>
+        <div class="lib-row">
+          <button class="mobile-toggle" style="display: block; position: relative;" aria-label="Menu (closed)">
+            <span></span><span></span><span></span>
+          </button>
+          <button class="mobile-toggle active" style="display: block; position: relative;" aria-label="Menu (open)">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           5. FORMS
+           ============================================================ -->
+      <section class="lib-section" id="forms">
+        <h2 class="lib-heading">Forms</h2>
+
+        <p class="lib-label">Inline email capture (on dark background)</p>
+        <div class="lib-dark-bg">
+          <form class="join-form" action="#" method="post" style="margin-bottom: 0;" onsubmit="return false;">
+            <input type="email" class="join-input" placeholder="your@email.com" aria-label="Email address">
+            <button type="submit" class="btn btn-primary-on-dark" style="flex-shrink: 0; height: 56px;">Join The Alliance</button>
+          </form>
+        </div>
+
+        <p class="lib-label">Footer newsletter (on dark background)</p>
+        <div class="lib-dark-bg-footer">
+          <p class="footer-newsletter-heading" style="color: var(--white);">Get the Newsletter</p>
+          <form class="footer-newsletter-form" action="#" method="post" onsubmit="return false;">
+            <input type="email" class="footer-newsletter-input" placeholder="Email address" aria-label="Email for newsletter">
+            <button type="submit" class="footer-newsletter-btn">Subscribe</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           6. CARDS
+           ============================================================ -->
+      <section class="lib-section" id="cards">
+        <h2 class="lib-heading">Cards</h2>
+
+        <p class="lib-label">Pillar cards (2-column grid with borders)</p>
+        <div class="pillars-grid" style="max-width: 900px;">
+          <a href="#" class="pillar-card">
+            <h3 class="pillar-title">Secure, well-paid work</h3>
+            <span class="pillar-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="#" class="pillar-card">
+            <h3 class="pillar-title">Free healthcare &amp; education</h3>
+            <span class="pillar-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="#" class="pillar-card">
+            <h3 class="pillar-title">Affordable housing &amp; power</h3>
+            <span class="pillar-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="#" class="pillar-card">
+            <h3 class="pillar-title">Public ownership of key assets</h3>
+            <span class="pillar-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           7. NAVIGATION
+           ============================================================ -->
+      <section class="lib-section" id="navigation">
+        <h2 class="lib-heading">Navigation</h2>
+
+        <p class="lib-label">Desktop header</p>
+        <div class="lib-section-preview">
+          <div class="lib-section-preview-label">Desktop Header (72px)</div>
+          <div style="position: relative; height: 72px; background: var(--white); box-shadow: var(--shadow-header); display: flex; align-items: center;">
+            <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+              <a href="#" class="header-logo">
+                The Alliance
+              </a>
+              <nav class="header-nav" style="display: flex;">
+                <a href="#">What We Stand For</a>
+                <a href="#">News</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#" class="btn btn-primary">Join The Alliance</a>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+        <p class="lib-label">Mobile drawer (shown open)</p>
+        <div class="lib-section-preview">
+          <div class="lib-section-preview-label">Mobile Drawer (360px max)</div>
+          <div style="position: relative; height: 460px; background: var(--neutral-100); overflow: hidden;">
+            <!-- Simulated overlay -->
+            <div style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5);"></div>
+            <!-- Simulated drawer -->
+            <div style="position: absolute; top: 0; right: 0; width: 360px; height: 100%; background: var(--white); padding: 96px 24px 24px; z-index: 1;">
+              <a href="#" style="display: block; font-family: var(--font-heading); font-weight: 600; font-size: 18px; color: var(--neutral-800); padding: 16px 0; border-bottom: 1px solid var(--neutral-100);">What We Stand For</a>
+              <a href="#" style="display: block; font-family: var(--font-heading); font-weight: 600; font-size: 18px; color: var(--neutral-800); padding: 16px 0; border-bottom: 1px solid var(--neutral-100);">News</a>
+              <a href="#" style="display: block; font-family: var(--font-heading); font-weight: 600; font-size: 18px; color: var(--neutral-800); padding: 16px 0; border-bottom: 1px solid var(--neutral-100);">About</a>
+              <a href="#" style="display: block; font-family: var(--font-heading); font-weight: 600; font-size: 18px; color: var(--neutral-800); padding: 16px 0; border-bottom: 1px solid var(--neutral-100);">Contact</a>
+              <a href="#" style="display: block; font-family: var(--font-heading); font-weight: 600; font-size: 18px; color: var(--neutral-800); padding: 16px 0; border-bottom: 1px solid var(--neutral-100);">Get Involved</a>
+              <a href="#" class="btn btn-primary" style="width: 100%; margin-top: 24px;">Join The Alliance</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           8. FOOTER
+           ============================================================ -->
+      <section class="lib-section" id="footer-section">
+        <h2 class="lib-heading">Footer</h2>
+
+        <p class="lib-label">Full footer component</p>
+      </div><!-- close container for full-bleed footer -->
+
+      <footer class="footer" role="contentinfo" style="margin-bottom: var(--space-12);">
+        <div class="container">
+          <div class="footer-tagline-block">
+            <p class="footer-tagline-huge">A country that works for working&nbsp;people.</p>
+            <p class="footer-tagline-sub">Democratic socialist politics for Aotearoa New&nbsp;Zealand.</p>
+          </div>
+
+          <div class="footer-grid">
+            <div>
+              <p class="footer-heading">Party</p>
+              <ul class="footer-links">
+                <li><a href="#">What We Stand For</a></li>
+                <li><a href="#">Our History</a></li>
+                <li><a href="#">Constitution</a></li>
+                <li><a href="#">Leadership</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="footer-heading">Get Involved</p>
+              <ul class="footer-links">
+                <li><a href="#">Join</a></li>
+                <li><a href="#">Volunteer</a></li>
+                <li><a href="#">Donate</a></li>
+                <li><a href="#">Events</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="footer-heading">Connect</p>
+              <ul class="footer-links">
+                <li><a href="#">News</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Media Enquiries</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="footer-newsletter-heading">Get the Newsletter</p>
+              <form class="footer-newsletter-form" action="#" method="post" onsubmit="return false;">
+                <input type="email" class="footer-newsletter-input" placeholder="Email address" aria-label="Email for newsletter">
+                <button type="submit" class="footer-newsletter-btn">Subscribe</button>
+              </form>
+              <div class="footer-social" aria-label="Social media">
+                <a href="#" aria-label="Facebook">Fb</a>
+                <a href="#" aria-label="Instagram">Ig</a>
+                <a href="#" aria-label="Twitter / X">X</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <div class="footer-legal">
+              <p><strong>&copy; 2026 The Alliance.</strong> No corporate donors. No hidden agendas.</p>
+              <p>Authorised by V. Billot, 123 Example Street, Christchurch.</p>
+            </div>
+            <div class="footer-legal-links">
+              <a href="#">Privacy</a>
+              <a href="#">Terms</a>
+              <a href="#">Accessibility</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <div class="container">
+
+      <!-- ============================================================
+           9. SECTION PATTERNS
+           ============================================================ -->
+      <section class="lib-section" id="sections">
+        <h2 class="lib-heading">Section Patterns</h2>
+
+        <p class="lib-label">Hero section</p>
+      </div><!-- close container for full-bleed -->
+
+      <div class="lib-section-preview" style="margin-bottom: var(--space-8);">
+        <div class="lib-section-preview-label">Hero — Full-bleed Burgundy</div>
+        <section class="hero" style="min-height: auto; padding-top: 0;">
+          <div class="container" style="padding-top: var(--space-12); padding-bottom: var(--space-12);">
+            <div class="hero-content">
+              <h1 class="hero-headline" style="animation: none; opacity: 1; transform: none;">
+                The Alliance<br><em>is back</em>
+              </h1>
+              <p class="hero-sub" style="animation: none; opacity: 1; transform: none;">
+                A genuine social democratic alternative to the failed policies of the status quo.
+              </p>
+              <div class="hero-ctas" style="animation: none; opacity: 1; transform: none;">
+                <a href="#" class="btn btn-primary-on-dark">Join the Movement</a>
+                <a href="#" class="btn btn-secondary-on-dark">Our Policies</a>
+              </div>
+            </div>
+            <div class="hero-photo" style="animation: none; opacity: 1; transform: none;">
+              <div style="width: 100%; height: 320px; background: var(--burgundy-800); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); font-family: var(--font-heading); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em;">Conference Photo</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="container">
+        <p class="lib-label">Quote banner section</p>
+      </div>
+
+      <div class="lib-section-preview" style="margin-bottom: var(--space-8);">
+        <div class="lib-section-preview-label">Quote Banner — Full-bleed Blue</div>
+        <section class="quote-banner" style="padding: var(--space-16) 0;">
+          <div class="container">
+            <blockquote class="quote-text" style="font-size: clamp(28px, 4vw, 56px);">
+              The Alliance is back — to offer a genuine social democratic alternative.
+            </blockquote>
+            <p class="quote-attribution">Victor Billot, Party Leader</p>
+          </div>
+        </section>
+      </div>
+
+      <div class="container">
+        <p class="lib-label">Statistics section</p>
+      </div>
+
+      <div class="lib-section-preview" style="margin-bottom: var(--space-8);">
+        <div class="lib-section-preview-label">Stats — Full-bleed Burgundy</div>
+        <section class="stats" style="padding: var(--space-12) 0;">
+          <div class="container">
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-number" style="font-size: clamp(48px, 6vw, 80px);">7 Nov</div>
+                <div class="stat-label">Election Day 2026</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number" style="font-size: clamp(48px, 6vw, 80px);">100+</div>
+                <div class="stat-label">Members at Conference</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number" style="font-size: clamp(48px, 6vw, 80px);">All</div>
+                <div class="stat-label">Across Aotearoa</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="container">
+        <p class="lib-label">Manifesto statements</p>
+      </div>
+
+      <div class="lib-section-preview" style="margin-bottom: var(--space-8);">
+        <div class="lib-section-preview-label">Manifesto — Typography as Design</div>
+        <section class="manifesto" style="padding: var(--space-12) 0;">
+          <div class="container">
+            <div class="manifesto-inner">
+              <hr class="manifesto-rule">
+              <div class="manifesto-statement">
+                <p class="manifesto-text" style="font-size: clamp(32px, 5vw, 64px);">Keep and expand our public&nbsp;assets</p>
+              </div>
+              <hr class="manifesto-rule">
+              <div class="manifesto-statement">
+                <p class="manifesto-text" style="font-size: clamp(32px, 5vw, 64px);">Secure work for&nbsp;all</p>
+              </div>
+              <hr class="manifesto-rule">
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="container">
+        <p class="lib-label">Join CTA section</p>
+      </div>
+
+      <div class="lib-section-preview" style="margin-bottom: var(--space-8);">
+        <div class="lib-section-preview-label">Join CTA — Full-bleed Burgundy</div>
+        <section class="join" style="padding: var(--space-16) 0;">
+          <div class="container" style="max-width: 740px;">
+            <h2 class="join-headline" style="font-size: clamp(36px, 5vw, 64px);">
+              Together, we can build a fairer&nbsp;Aotearoa.
+            </h2>
+            <p class="join-sub">
+              No corporate donors. No hidden agendas. Just people who believe we can do better.
+            </p>
+            <form class="join-form" action="#" method="post" onsubmit="return false;">
+              <input type="email" class="join-input" placeholder="your@email.com" aria-label="Email address">
+              <button type="submit" class="btn btn-primary-on-dark" style="flex-shrink: 0; height: 56px;">Join</button>
+            </form>
+          </div>
+        </section>
+      </div>
+
+      <div class="container">
+
+      <!-- ============================================================
+           10. UTILITIES
+           ============================================================ -->
+      <section class="lib-section" id="utilities">
+        <h2 class="lib-heading">Utilities</h2>
+
+        <p class="lib-label">Container (1280px max-width, 24px padding)</p>
+        <div style="background: var(--burgundy-50); padding: var(--space-4) 0; margin-bottom: var(--space-8); border-radius: var(--radius-md);">
+          <div class="container" style="background: var(--burgundy-100); padding: var(--space-4); border-radius: var(--radius-sm);">
+            <p style="font-family: var(--font-heading); font-weight: 700; font-size: 14px; color: var(--burgundy-700);">.container — max-width: 1280px, margin: 0 auto, padding: 0 24px</p>
+          </div>
+        </div>
+
+        <p class="lib-label">Overline (section marker)</p>
+        <div style="margin-bottom: var(--space-8);">
+          <span class="overline" style="color: var(--burgundy-700);">Policy Platform</span>
+          <br>
+          <span class="overline" style="color: var(--blue-700);">Latest News</span>
+          <br>
+          <span class="overline" style="color: var(--neutral-500);">Get Involved</span>
+        </div>
+
+        <p class="lib-label">Focus ring (tab to see)</p>
+        <div class="lib-row">
+          <a href="#" class="btn btn-primary">Tab to Me</a>
+          <a href="#" style="font-family: var(--font-heading); font-weight: 700; color: var(--burgundy-700);">Tab to This Link</a>
+        </div>
+
+        <p class="lib-label">Selection colour</p>
+        <div style="margin-bottom: var(--space-8);">
+          <p style="font-family: var(--font-body); font-size: 16px; color: var(--neutral-800);">Select this text to see the burgundy selection highlight. The Alliance uses burgundy-700 for text selection across the entire site.</p>
+        </div>
+
+        <p class="lib-label">Shadows</p>
+        <div class="lib-row">
+          <div style="width: 160px; height: 100px; background: var(--white); border-radius: var(--radius-md); box-shadow: var(--shadow-card); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 13px; color: var(--neutral-500);">shadow-card</div>
+          <div style="width: 160px; height: 100px; background: var(--white); border-radius: var(--radius-md); box-shadow: var(--shadow-card-hover); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 13px; color: var(--neutral-500);">shadow-card-hover</div>
+          <div style="width: 160px; height: 100px; background: var(--white); border-radius: var(--radius-md); box-shadow: var(--shadow-header); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 13px; color: var(--neutral-500);">shadow-header</div>
+        </div>
+
+        <p class="lib-label">Border radius</p>
+        <div class="lib-row">
+          <div style="width: 80px; height: 80px; background: var(--burgundy-100); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 12px; color: var(--burgundy-700);">sm (4px)</div>
+          <div style="width: 80px; height: 80px; background: var(--burgundy-100); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 12px; color: var(--burgundy-700);">md (8px)</div>
+          <div style="width: 80px; height: 80px; background: var(--burgundy-100); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 12px; color: var(--burgundy-700);">lg (16px)</div>
+        </div>
+      </section>
+
+    </div><!-- /.container -->
+  </div><!-- /.lib-page -->
+
+  <!-- Smooth scroll for library nav -->
+  <script>
+    document.querySelectorAll('.lib-nav a[href^="#"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.pageYOffset - 60;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
