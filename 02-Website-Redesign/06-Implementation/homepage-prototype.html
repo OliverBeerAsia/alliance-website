@@ -6,10 +6,10 @@
   <meta name="description" content="The Alliance — A genuine social democratic alternative for Aotearoa New Zealand. Tax justice, public ownership, free healthcare and education, secure housing.">
   <title>The Alliance — A Country That Works For Working People</title>
 
-  <!-- Fonts: Montserrat (campaign headlines) + Playfair Display (tagline) + Inter (body) -->
+  <!-- Fonts: Montserrat (campaign headlines) + Inter (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,700;0,800;0,900&family=Playfair+Display:ital,wght@0,700;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     /* ============================================================
@@ -53,7 +53,6 @@
       /* Typography — matched to Tom Roud campaign materials */
       --font-display: 'Montserrat', sans-serif;
       --font-heading: 'Montserrat', sans-serif;
-      --font-tagline: 'Playfair Display', Georgia, serif;
       --font-body: 'Inter', sans-serif;
 
       /* Spacing — 4px base */
@@ -181,13 +180,6 @@
       letter-spacing: -0.02em;
       white-space: nowrap;
       text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-    }
-    .header-logo img {
-      height: 36px;
-      width: auto;
     }
 
     .header-nav {
@@ -387,14 +379,13 @@
     }
 
     .hero-sub {
-      font-family: var(--font-tagline);
-      font-size: 26px;
-      line-height: 1.4;
-      color: rgba(255, 255, 255, 0.95);
+      font-family: var(--font-body);
+      font-size: 22px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.9);
       max-width: 520px;
       margin-bottom: var(--space-12);
       font-weight: 500;
-      font-style: italic;
     }
 
     .hero-ctas {
@@ -549,15 +540,14 @@
     }
 
     .quote-text {
-      font-family: var(--font-tagline);
-      font-weight: 700;
+      font-family: var(--font-display);
+      font-weight: 900;
       font-size: clamp(34px, 5.5vw, 72px);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
       max-width: 1000px;
       position: relative;
       z-index: 1;
-      font-style: italic;
     }
 
     .quote-attribution {
@@ -816,16 +806,15 @@
     }
 
     .join-sub {
-      font-family: var(--font-tagline);
-      font-size: 24px;
-      line-height: 1.4;
-      color: rgba(255, 255, 255, 0.95);
+      font-family: var(--font-body);
+      font-size: 20px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.9);
       margin-bottom: var(--space-10);
       max-width: 580px;
       margin-left: auto;
       margin-right: auto;
       font-weight: 500;
-      font-style: italic;
     }
 
     .join-form {
@@ -889,14 +878,13 @@
     }
 
     .footer-tagline-sub {
-      font-family: var(--font-tagline);
-      font-weight: 600;
-      font-size: clamp(22px, 2.5vw, 32px);
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.7);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: clamp(18px, 2vw, 24px);
+      color: rgba(255, 255, 255, 0.6);
       margin-top: var(--space-6);
       max-width: 600px;
-      line-height: 1.35;
+      line-height: 1.5;
     }
 
     .footer-grid {
@@ -1181,7 +1169,7 @@
   <header class="header" role="banner">
     <div class="container">
       <a href="/" class="header-logo" aria-label="The Alliance — Home">
-        <img src="../../06-Assets/alliance party logo (lo res full background).jpg" alt="The Alliance logo" style="height: 40px; width: auto; border-radius: 4px;">
+        The Alliance
       </a>
       <nav class="header-nav" aria-label="Main navigation">
         <a href="#policies">What We Stand For</a>
