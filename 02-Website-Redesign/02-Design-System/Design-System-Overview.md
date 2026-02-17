@@ -690,6 +690,177 @@ See `01-Reference/Brand/Alliance-Tone-of-Voice-Guide.md` for comprehensive guide
 
 ---
 
+## Animations & Transitions
+
+### Transition Tokens
+
+Three transition speeds are defined in `tokens.css` and used consistently throughout all interactive states:
+
+| Token | Value | When to Use |
+|-------|-------|-------------|
+| `--transition-fast` | `0.2s ease-in-out` | Hover states, colour changes, focus rings, nav link underlines — immediate feedback |
+| `--transition-medium` | `0.35s ease-in-out` | Mobile drawer slide, panel transitions — noticeable but not sluggish |
+| `--transition-slow` | `0.5s ease-in-out` | Reserved for large-scale transitions (page-level animations, if needed) |
+
+### Hero Staggered Entry
+
+The hero section uses a custom `@keyframes hero-enter` animation with staggered `animation-delay` values to create a cinematic reveal:
+
+```
+.hero-headline   → delay: 0.1s,  translateY(28px) → translateY(0), opacity 0 → 1
+.hero-sub        → delay: 0.3s,  translateY(28px) → translateY(0)
+.hero-ctas       → delay: 0.45s, translateY(28px) → translateY(0)
+.hero-photo      → delay: 0.2s,  translateY(40px) → translateY(0)
+```
+
+All hero animations are `0.8s ease-out forwards`. The `forwards` fill-mode keeps elements visible after animation completes.
+
+### Scroll Reveal Pattern
+
+Sections below the fold use an IntersectionObserver-based reveal:
+
+1. Elements start with class `.reveal` → `opacity: 0; transform: translateY(32px)`
+2. When 10% visible (with -60px bottom margin), JavaScript adds `.visible`
+3. `.reveal.visible` transitions to `opacity: 1; transform: translateY(0)` over `0.7s ease-out`
+4. Observer disconnects after reveal (one-shot, no re-hiding)
+
+### Animation Principles
+
+1. **Only animate opacity and transform** — never animate layout properties (`width`, `height`, `margin`, `padding`, `top/left`). Opacity and transform are GPU-composited and won't cause reflow.
+2. **Hover/active transitions use `--transition-fast`** — buttons scale to 1.02 on hover, nav links gain underline width, card arrows translate 4px right.
+3. **Ease-in-out for interactions, ease-out for entries** — `ease-in-out` creates a natural feel for toggles; `ease-out` gives entering elements a decelerating, "settling in" quality.
+4. **No animation on `prefers-reduced-motion`** — when building the production site, add a media query to disable all animations for users who request it.
+
+---
+
+## Responsive Behaviour Rules
+
+### Breakpoints
+
+| Breakpoint | Max-width | What changes |
+|------------|-----------|-------------|
+| **Desktop** | > 1023px | Full layout: 2-column hero, 2-column pillar grid, 3-column stats, 4-column footer grid, desktop nav visible |
+| **Tablet** | ≤ 1023px | Single-column hero, mobile nav (drawer), 2-column footer grid, conference photo above text |
+| **Mobile** | ≤ 767px | Everything stacks single-column, reduced section padding, smaller image heights, CTAs go full-width |
+
+### Grid Collapse Rules
+
+| Component | Desktop | Tablet (≤ 1023px) | Mobile (≤ 767px) |
+|-----------|---------|-------------------|-------------------|
+| Hero | 2-column (text + photo) | 1-column stacked | 1-column, reduced padding |
+| Pillar cards | 2×2 grid | 2×2 grid (unchanged) | 1-column stacked |
+| Stats | 3-column with dividers | 3-column (unchanged) | 1-column, border-bottom replaces border-right |
+| Conference | 2-column (text + photo) | 1-column, photo first | 1-column, reduced spacing |
+| Footer grid | 4-column (3 nav + newsletter) | 2×2 grid | 1-column stacked |
+
+### Decorative Elements on Mobile
+
+These decorative elements **hide** on mobile (≤ 767px) to keep layouts clean:
+
+- **Hero `::before` diagonal** — `display: none` at ≤ 1023px
+- **Quote banner `::before` diagonal** — `display: none` at ≤ 767px
+- **Stats `::before` diagonal** — `display: none` at ≤ 767px
+- **Join `::before` diagonal** — `display: none` at ≤ 767px
+
+### Container Padding
+
+The `.container` has a consistent `padding: 0 var(--space-6)` (24px) at all breakpoints. Section vertical padding reduces at smaller breakpoints:
+
+| Section | Desktop padding | Mobile (≤ 767px) padding |
+|---------|----------------|--------------------------|
+| Hero | `--space-20` (80px) top/bottom | `--space-12` (48px) |
+| Pillars | `--space-24` (96px) | `--space-16` (64px) |
+| Quote banner | `--space-32` (128px) | `--space-20` (80px) |
+| Conference | `--space-24` (96px) | `--space-16` (64px) |
+| Stats | `--space-24` (96px) | `--space-16` (64px) |
+| Manifesto | `--space-32` (128px) | `--space-20` (80px) |
+| Join | `--space-32` (128px) | `--space-20` (80px) |
+
+### Touch Target Minimums
+
+On mobile, all interactive elements must meet **44×44px** minimum touch target (WCAG 2.5.5):
+
+- **Buttons**: 56px height exceeds minimum. Full-width on mobile for easy tapping.
+- **Nav links in mobile drawer**: 18px font with `--space-4` (16px) vertical padding = ~50px touch height.
+- **Mobile toggle (hamburger)**: 44×44px explicitly set.
+- **Footer social icons**: 40×40px — slightly under minimum. Consider increasing to 44×44px in production.
+
+### Image Height Adjustments
+
+| Image | Desktop | Tablet (≤ 1023px) | Mobile (≤ 767px) |
+|-------|---------|-------------------|-------------------|
+| Hero photo | 480px | 320px | 260px |
+| Conference photo | 500px | 360px | 360px (unchanged) |
+| Photo banner | 420px | 420px (unchanged) | 280px |
+
+---
+
+## Form Patterns
+
+### Pattern 1: Inline Email Capture (`.join-form`)
+
+Used in the Join CTA section. Horizontal layout on desktop, stacks vertically on mobile.
+
+**Structure:**
+```html
+<form class="join-form">
+  <input type="email" class="join-input" placeholder="your@email.com">
+  <button type="submit" class="btn btn-primary-on-dark">Join</button>
+</form>
+```
+
+**Specs:**
+- Container: `display: flex; gap: 12px; max-width: 500px; margin: 0 auto`
+- Input height: 56px (matches button height)
+- Input border: `2px solid rgba(255, 255, 255, 0.35)` (dark background variant)
+- Input background: `rgba(255, 255, 255, 0.1)`
+- Input text: white, Inter 500 16px
+- Placeholder: `rgba(255, 255, 255, 0.5)`
+- Focus state: border becomes solid white, background becomes `rgba(255, 255, 255, 0.15)`
+- Mobile (≤ 767px): `flex-direction: column`, button goes full-width
+
+### Pattern 2: Footer Newsletter (`.footer-newsletter-form`)
+
+Used in the footer's newsletter column. Always horizontal (compact).
+
+**Structure:**
+```html
+<form class="footer-newsletter-form">
+  <input type="email" class="footer-newsletter-input" placeholder="Email address">
+  <button type="submit" class="footer-newsletter-btn">Subscribe</button>
+</form>
+```
+
+**Specs:**
+- Container: `display: flex; gap: 8px`
+- Input height: 48px (smaller than join form)
+- Input border: `1px solid rgba(255, 255, 255, 0.2)`
+- Input background: `rgba(255, 255, 255, 0.06)`
+- Button: white background, neutral-950 text, 48px height, uppercase
+- Focus state: border lightens to `rgba(255, 255, 255, 0.45)`, background to `rgba(255, 255, 255, 0.1)`
+
+### Error States (Specification — Not Yet Built)
+
+When form validation is implemented, error states should follow these patterns:
+
+**Input error state:**
+- Border: `2px solid var(--error)` (#C41E1E)
+- Background: light red tint (on light backgrounds) or unchanged (on dark)
+- Error message: displayed below input, Inter 500 14px, `var(--error)` colour
+- Icon: inline error icon (SVG) before message text
+
+**Dark background error variant:**
+- Border: `2px solid #FF6B6B` (lighter red, visible on dark)
+- Error message: `#FF6B6B` text colour
+- Keep input background unchanged
+
+**Disabled state:**
+- Input opacity: 50%
+- Cursor: `not-allowed`
+- No focus ring on tab
+
+---
+
 ## Design System Summary
 
 | Element | Decision |
