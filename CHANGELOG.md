@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.3.1] — 2026-02-17
+
+### Fixed
+- **Dark text on coloured backgrounds**: heading default `color` changed from `var(--neutral-900)` to `inherit` in `typography.css`, so headings on burgundy/blue sections now correctly inherit white text
+
+### Changed
+- **Header**: transparent over hero with white logo/links, transitions to solid white with shadow on scroll (50px threshold) — inspired by AOC/Die Linke
+- **Footer**: reduced tagline size from `clamp(44px, 6vw, 96px)` to `clamp(28px, 4vw, 48px)`, tightened padding throughout for a more compact footer
+- **Mobile toggle**: hamburger bars now white by default (visible on transparent header), dark when scrolled
+- **Nav links**: white with 0.85 opacity on transparent header, `neutral-700` when scrolled
+- **Active nav state**: white on transparent header, `burgundy-700` when scrolled
+- `main.js`: added scroll listener for `header-scrolled` class toggle
+
+---
+
 ## [0.3.0] — 2026-02-17
 
 ### Added

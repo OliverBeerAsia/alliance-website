@@ -18,23 +18,24 @@ All CSS and JS files are plain, static assets. No compilation, bundling, or pack
 
 ```
 06-Implementation/
-├── index.html                  Main homepage prototype
+├── index.html                  Main homepage
+├── about.html                  About page (first interior page)
 ├── component-library.html      Browsable component reference
 ├── CONTRIBUTING.md             This file
 ├── css/
 │   ├── tokens.css              :root custom properties (colours, spacing, typography, etc.)
 │   ├── reset.css               Box-sizing, base html/body, img/a/ul resets, .container
-│   ├── typography.css          Type scale classes, base heading/paragraph defaults
+│   ├── typography.css          Type scale classes, base heading/paragraph defaults (color: inherit)
 │   ├── utilities.css           .reveal, .overline, :focus-visible, ::selection
-│   ├── buttons.css             All .btn variants + .mobile-toggle
+│   ├── buttons.css             All .btn variants + .mobile-toggle (white/dark scroll states)
 │   ├── forms.css               .join-form, .join-input, .footer-newsletter-*
 │   ├── cards.css               .pillar-card, .pillar-title, .pillar-arrow
-│   ├── nav.css                 .header, .header-logo, .header-nav, mobile drawer/overlay
-│   ├── footer.css              .footer and all sub-components
-│   ├── sections.css            Hero, pillars, quote-banner, conference, stats, manifesto, photo-banner, join
+│   ├── nav.css                 .header (transparent→solid scroll), .header-nav, mobile drawer/overlay, active nav state
+│   ├── footer.css              .footer and all sub-components (compact layout)
+│   ├── sections.css            Homepage sections + interior page patterns (interior-hero, prose-section, principles, history-era, leadership)
 │   └── responsive.css          All @media queries, consolidated
 └── js/
-    └── main.js                 Mobile nav toggle, scroll reveal, smooth scroll
+    └── main.js                 Mobile nav toggle, header scroll state, scroll reveal, smooth scroll
 ```
 
 ### Cascade order matters
@@ -112,6 +113,27 @@ font-family: 'Montserrat', sans-serif;
 
 Each CSS file should only contain styles for its named component. If a style applies to multiple components, it belongs in `utilities.css` or `typography.css`.
 
+### Header scroll states
+
+The header uses a `.header-scrolled` class toggled by JS. When adding new header elements or modifying nav styles, provide both states:
+
+```css
+/* Default (transparent over hero) */
+.header-nav a:not(.btn) { color: rgba(255, 255, 255, 0.85); }
+
+/* Scrolled (solid white) */
+.header-scrolled .header-nav a:not(.btn) { color: var(--neutral-700); }
+```
+
+### Interior page patterns
+
+When creating new interior pages, reuse the established patterns from `sections.css`:
+- `.interior-hero` — page-level hero on burgundy background
+- `.prose-section` + `.prose-inner` — centred reading content (740px max-width)
+- `.principles` + `.principles-grid` — card grid on neutral-50
+- `.history-era` — timeline blocks with year markers
+- `.leadership` + `.leadership-grid` — officer cards on burgundy-50
+
 ### Responsive styles
 
 All `@media` queries go in `responsive.css`, not in individual component files. This keeps breakpoint logic in one place and prevents specificity conflicts.
@@ -130,8 +152,12 @@ All `@media` queries go in `responsive.css`, not in individual component files. 
 Before merging any branch:
 
 - [ ] `index.html` renders correctly at 375px, 768px, and 1280px
+- [ ] `about.html` renders correctly at 375px, 768px, and 1280px
+- [ ] Header transitions from transparent to solid on scroll
 - [ ] All hover states and animations work
-- [ ] Mobile navigation opens, closes, and links work
+- [ ] Mobile navigation opens, closes, and links work between pages
+- [ ] Navigation links work between `index.html` and `about.html`
+- [ ] Active nav state (underline) shows on correct page
 - [ ] `component-library.html` shows all components correctly
 - [ ] No raw colour/size values — all using design tokens
 - [ ] Commit messages follow the convention

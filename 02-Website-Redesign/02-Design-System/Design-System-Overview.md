@@ -347,6 +347,7 @@ The Taproot influence demands typography that can carry entire sections as a vis
 2. **Body text is readable and human** — Inter at 16px/1.6 line-height ensures comfortable reading for policy content
 3. **Uppercase sparingly** — Use for overlines, category labels, and short policy statements (as per the campaign materials). Never for full paragraphs
 4. **Bold for emphasis in body** — The campaign materials use bold phrases within body text to pull out key commitments. Carry this pattern to web
+5. **Headings inherit colour** — Base heading styles in `typography.css` use `color: inherit` (not a fixed dark colour). Each section or component sets its own heading colour explicitly. This ensures headings on dark backgrounds (burgundy, blue) correctly inherit white text from their parent section
 
 ### Mobile Type Scale
 
@@ -409,15 +410,19 @@ On screens below 768px, reduce display sizes:
 
 ### Navigation
 
-**Desktop — Sticky Header**
-- Full-width bar, white background, burgundy logo left
-- Nav links centre-right: What We Stand For, News, About, Get Involved, Contact
-- Primary CTA button right: "Join the Alliance" (burgundy-700 background, white text)
-- Sticky on scroll with subtle shadow
+**Desktop — Transparent-to-Solid Header (AOC/Die Linke Influence)**
+- Full-width bar, **transparent background** over hero with white logo + nav links
+- Transitions to solid white background with shadow on scroll (50px threshold)
+- Logo: white by default → burgundy-700 when scrolled
+- Nav links: `rgba(255,255,255,0.85)` by default → neutral-700 when scrolled
+- Underline accents: white by default → burgundy-700 when scrolled
+- Active page: `aria-current="page"` — full underline, colour matches header state
+- Primary CTA button right: "Join the Alliance" (burgundy-700 bg, white text — stays consistent in both states)
 - Height: 72px
+- Transition: `background` and `box-shadow` on `--transition-medium` (0.35s)
 
 **Mobile — Drawer Navigation**
-- Hamburger icon right, logo left
+- Hamburger icon right (white bars on transparent header, dark when scrolled), logo left
 - Full-screen drawer slides from right
 - Large touch targets (minimum 48px height)
 - CTA button prominent at top of drawer
@@ -434,12 +439,13 @@ On screens below 768px, reduce display sizes:
   - Secondary: White outline button → "Our Policies"
 - Full viewport height on desktop, auto on mobile (stacks vertically)
 
-**Interior Page Hero**
-- Burgundy-700 or blue-700 background (alternating by section)
-- Display-md white headline
-- Optional overline label (e.g., "POLICY" or "NEWS")
-- Breadcrumb navigation below hero in neutral-100 bar
-- Height: ~300px desktop, ~200px mobile
+**Interior Page Hero (`.interior-hero`)**
+- Burgundy-700 background with diagonal `::before` accent (burgundy-800, right side)
+- Centred text, optional overline label (e.g., "About the Alliance")
+- Display-md white headline, `clamp(32px, 5vw, 56px)`
+- `padding-top: calc(header-height + space-20)` to account for transparent header overlap
+- Diagonal accent hidden on mobile (≤ 767px), reduced padding
+- Currently implemented on `about.html`
 
 ### Content Blocks
 
@@ -589,7 +595,7 @@ A typical page should alternate sections to create visual energy (Die Linke infl
 7. TESTIMONIAL   → Burgundy-700 full-bleed (white quote)
 8. BLOG PREVIEW  → White (3-column card grid)
 9. JOIN CTA      → Burgundy-700 full-bleed (conversion-focused)
-10. FOOTER       → Neutral-900 (white text, nav links)
+10. FOOTER       → Neutral-950 (compact: reduced tagline + nav grid + bottom bar)
 ```
 
 This rhythm ensures no two adjacent sections share the same background, creating visual momentum and energy throughout the scroll.
@@ -724,6 +730,18 @@ Sections below the fold use an IntersectionObserver-based reveal:
 3. `.reveal.visible` transitions to `opacity: 1; transform: translateY(0)` over `0.7s ease-out`
 4. Observer disconnects after reveal (one-shot, no re-hiding)
 
+### Header Scroll Transition
+
+The header uses a scroll listener (in `main.js`) to toggle between transparent and solid states:
+
+1. On page load, `updateHeader()` checks `window.scrollY`
+2. If > 50px, adds `.header-scrolled` to `.header`
+3. If ≤ 50px, removes `.header-scrolled`
+4. Listener uses `{ passive: true }` for scroll performance
+5. CSS transitions on `background` and `box-shadow` use `--transition-medium` (0.35s)
+
+This creates a seamless effect where the header feels integrated with the hero, then solidifies as the user scrolls into content sections.
+
 ### Animation Principles
 
 1. **Only animate opacity and transform** — never animate layout properties (`width`, `height`, `margin`, `padding`, `top/left`). Opacity and transform are GPU-composited and won't cause reflow.
@@ -748,7 +766,11 @@ Sections below the fold use an IntersectionObserver-based reveal:
 | Component | Desktop | Tablet (≤ 1023px) | Mobile (≤ 767px) |
 |-----------|---------|-------------------|-------------------|
 | Hero | 2-column (text + photo) | 1-column stacked | 1-column, reduced padding |
+| Interior hero | Centred text + diagonal | Centred text + diagonal | Reduced padding, diagonal hidden |
 | Pillar cards | 2×2 grid | 2×2 grid (unchanged) | 1-column stacked |
+| Principles grid | 2-column cards | 2-column cards | 1-column stacked |
+| History eras | 2-column (year + content) | 2-column (year + content) | 1-column stacked, smaller year |
+| Leadership | 2-column cards | 2-column cards | 1-column stacked |
 | Stats | 3-column with dividers | 3-column (unchanged) | 1-column, border-bottom replaces border-right |
 | Conference | 2-column (text + photo) | 1-column, photo first | 1-column, reduced spacing |
 | Footer grid | 4-column (3 nav + newsletter) | 2×2 grid | 1-column stacked |
@@ -758,6 +780,7 @@ Sections below the fold use an IntersectionObserver-based reveal:
 These decorative elements **hide** on mobile (≤ 767px) to keep layouts clean:
 
 - **Hero `::before` diagonal** — `display: none` at ≤ 1023px
+- **Interior hero `::before` diagonal** — `display: none` at ≤ 767px
 - **Quote banner `::before` diagonal** — `display: none` at ≤ 767px
 - **Stats `::before` diagonal** — `display: none` at ≤ 767px
 - **Join `::before` diagonal** — `display: none` at ≤ 767px
